@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become The First Trillionare</title>
+  <style>
+    :root{--bg:#08111f;--panel:#112036;--panel2:#0c182a;--line:rgba(145,201,255,.12);--text:#f4f8ff;--muted:#91a4c2;--accent:#7ef0c1;--accent2:#2ad6a3;--gold:#ffd36c;--danger:#ff857f;--shadow:0 18px 50px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at top left,rgba(46,154,255,.15),transparent 25%),radial-gradient(circle at top right,rgba(255,211,108,.14),transparent 24%),linear-gradient(135deg,#050b14 0%,#0b1630 48%,#071120 100%);overflow-x:hidden}
+    button{font:inherit;border:0;cursor:pointer;transition:.18s transform,.18s opacity,.18s background}
+    button:hover:not(:disabled){transform:translateY(-2px)}button:disabled{opacity:.45;cursor:not-allowed}
+    .app{width:min(1380px,calc(100% - 24px));margin:0 auto;padding:24px 0 40px}
+    .hero,.grid2,.grid3,.stats,.nav,.cards{display:grid;gap:16px}.hero{grid-template-columns:1.1fr 1.2fr;margin-bottom:18px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .panel,.stat{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:22px}.panel{padding:20px;position:relative;overflow:hidden}.panel::before{content:"";position:absolute;inset:0;background:linear-gradient(130deg,rgba(126,240,193,.08),transparent 40%,rgba(255,211,108,.05));pointer-events:none}.stat{padding:16px}
+    .eyebrow,.kicker{margin:0 0 10px;text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;color:var(--accent)}h1,h2,h3,strong{font-family:Trebuchet MS,Segoe UI,sans-serif}h1{margin:0 0 12px;font-size:clamp(2.2rem,5vw,4.4rem);line-height:.95}h2{margin:0;font-size:1.28rem}.muted,.summary,.desc,.meta,.sub{color:var(--muted);line-height:1.6}
+    .summary{min-height:88px;padding:14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+    .head,.row,.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.row{margin-top:14px;flex-wrap:wrap}
+    .nav{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.nav-btn,.pri,.sec,.ghost,.card-btn,.choice-btn{padding:12px 15px;border-radius:14px;font-weight:700;position:relative;isolation:isolate;clip-path:polygon(10% 0,90% 0,100% 50%,90% 100%,10% 100%,0 50%)}
+    .nav-btn,.ghost,.card-btn,.choice-btn{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}
+    .nav-btn::before,.ghost::before,.card-btn::before,.choice-btn::before,.pri::before,.sec::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(95,210,255,.0),rgba(95,210,255,.35));opacity:0;transition:opacity .18s ease;z-index:-1}
+    .nav-btn:hover::before,.ghost:hover::before,.card-btn:hover::before,.choice-btn:hover::before,.pri:hover::before,.sec:hover::before{opacity:1}
+    .nav-btn.active{background:linear-gradient(135deg,#153c78,#0f274d);border-color:rgba(95,170,255,.45);box-shadow:inset 0 0 0 1px rgba(122,190,255,.15)}
+    .pri{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#03251b}.sec{background:linear-gradient(135deg,#83b8ff,#5f86ff);color:#fff}
+    .page{display:none;margin-bottom:18px}.page.active{display:block}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1.4fr 1fr 1fr}.cards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .card{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02)),rgba(8,16,29,.8);border:1px solid rgba(255,255,255,.08)}
+    .badge{padding:6px 10px;border-radius:999px;background:rgba(255,211,108,.14);color:var(--gold);font-size:.78rem;white-space:nowrap}.card-btn{margin-top:auto;background:rgba(126,240,193,.12);color:var(--text);border:1px solid rgba(126,240,193,.18)}
+    .wheel-wrap{position:relative;display:grid;place-items:center;min-height:340px}.pointer{position:absolute;top:8px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:36px solid var(--gold);z-index:2}
+    .wheel{width:min(320px,75vw);aspect-ratio:1;border-radius:50%;border:10px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.45);background:conic-gradient(#7ef0c1 0 45deg,#58b2ff 45deg 90deg,#ffd36c 90deg 135deg,#ff857f 135deg 180deg,#6f8dff 180deg 225deg,#4fe2b8 225deg 270deg,#ffb95a 270deg 315deg,#9b8dff 315deg 360deg);display:grid;place-items:center;transition:transform 4.6s cubic-bezier(.15,.85,.15,1)}
+    .wheel-mid{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:rgba(5,12,23,.88);border:3px solid rgba(255,255,255,.12);text-align:center;padding:10px}
+    .wheel-loading{display:grid;justify-items:center;gap:6px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+    .wheel-spinner{width:28px;height:28px;border-radius:50%;border:4px solid rgba(255,255,255,.16);border-top-color:#7ef0c1;animation:wheelSpin .8s linear infinite}
+    canvas{width:100%;min-height:320px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+    .popups{position:fixed;right:18px;top:18px;z-index:10;display:grid;gap:10px;pointer-events:none}.popup{min-width:220px;padding:14px 16px;border-radius:16px;background:rgba(8,16,29,.92);border:1px solid rgba(126,240,193,.2);box-shadow:0 16px 30px rgba(0,0,0,.35);animation:popup 2.8s ease forwards}.popup.bad{border-color:rgba(255,133,127,.3)}
+    .balance-dock{position:fixed;right:16px;bottom:16px;z-index:9;padding:14px 16px;min-width:220px;background:rgba(8,16,29,.96);border:1px solid rgba(95,170,255,.28);border-radius:18px;box-shadow:0 18px 30px rgba(0,0,0,.3);cursor:pointer}
+    .sound-dock{position:fixed;right:16px;top:16px;z-index:11;padding:11px 14px;background:rgba(8,16,29,.96);border:1px solid rgba(95,170,255,.28);border-radius:16px;box-shadow:0 18px 30px rgba(0,0,0,.3)}
+    .action-box{max-width:980px;margin:0 auto}.action-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .small-admin{position:absolute;left:14px;top:70px;padding:8px 10px;font-size:.76rem;z-index:1}
+    .field{width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text)}
+    .howto{display:grid;gap:10px;text-align:left}
+    body.taco-mode{background:radial-gradient(circle at top left,rgba(255,222,89,.22),transparent 25%),radial-gradient(circle at top right,rgba(255,111,97,.18),transparent 24%),linear-gradient(135deg,#4d1c13 0%,#9d4421 48%,#3f140d 100%)}
+    body.taco-mode .panel,body.taco-mode .stat{border-color:rgba(255,210,120,.25)}
+    @keyframes popup{0%{opacity:0;transform:translateY(-14px) scale(.96)}10%,75%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px) scale(.98)}}
+    @keyframes wheelSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .log{display:grid;gap:10px;max-height:360px;overflow:auto}.entry{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}.good{color:var(--accent)}.bad{color:var(--danger)}
+    @media (max-width:1080px){.hero,.grid2,.grid3{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:700px){.stats,.cards{grid-template-columns:1fr}.head,.row{flex-direction:column;align-items:stretch}.balance-dock{left:12px;right:12px;bottom:12px;min-width:0}.sound-dock{right:12px;top:12px}.wheel{width:min(280px,82vw)}.app{width:min(100% - 16px,1380px)}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Endless Wealth Decision Simulator</p>
+        <h1>Become The First Trillionare</h1>
+        <p class="muted">Start from zero, grow slowly, buy cheap low-quality items first, and work toward expensive modern luxury. The systems are organized so the game feels clear instead of chaotic.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="muted">Cash</span><strong id="cash">$0</strong></div>
+        <div class="stat"><span class="muted">Bank</span><strong id="bank">$0</strong></div>
+        <div class="stat"><span class="muted">Net Worth</span><strong id="worth">$0</strong></div>
+        <div class="stat"><span class="muted">Interest / hour</span><strong id="interest">$0</strong></div>
+        <div class="stat"><span class="muted">Status</span><strong id="status">Starting out</strong></div>
+        <div class="stat"><span class="muted">Risk</span><strong id="risk">Stable</strong></div>
+      </div>
+    </header>
+
+    <section class="panel" style="margin-bottom:18px">
+      <div class="head"><div><p class="kicker">Navigation</p><h2>Game Pages</h2></div></div>
+      <div class="nav" id="nav"></div>
+    </section>
+
+    <section class="page active" id="page-home">
+      <div class="grid3">
+        <section class="panel">
+          <button id="adminBtn" class="ghost small-admin">Admin</button>
+          <div class="head"><div><p class="kicker">Home</p><h2>Current Run</h2></div><button id="workBtn" class="ghost">Current Job</button></div>
+          <div id="homeSummary" class="summary"></div>
+          <div id="timerSummary" class="summary" style="margin-top:12px"></div>
+          <div class="row">
+            <button id="depositBtn" class="pri">Deposit</button>
+            <button id="withdrawBtn" class="sec">Withdraw</button>
+          </div>
+          <div id="adminSummary" class="summary" style="margin-top:12px;display:none"></div>
+        </section>
+        <section class="panel"><div class="head"><div><p class="kicker">Rotation</p><h2>Limited Job</h2></div></div><div id="marketSummary" class="summary"></div></section>
+        <section class="panel"><div class="head"><div><p class="kicker">Protection</p><h2>Events</h2></div><button id="insuranceBtn" class="ghost">Buy Insurance</button></div><div id="eventSummary" class="summary"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="page-economy">
+      <section class="panel">
+        <div class="head"><div><p class="kicker">Economy</p><h2>Banking, Pace, Mini Challenges</h2></div></div>
+        <div id="jobSummary" class="summary"></div>
+        <div id="challengeSummary" class="summary" style="margin-top:12px"></div>
+        <div id="challengeCards" class="cards" style="margin-top:12px"></div>
+        <div id="activitySummary" class="summary" style="margin-top:12px"></div>
+        <div id="activityCards" class="cards" style="margin-top:12px"></div>
+      </section>
+    </section>
+
+    <section class="page" id="page-jobs">
+      <section class="panel">
+        <div class="head"><div><p class="kicker">Jobs</p><h2>Apply For Work And Promotions</h2></div></div>
+        <div id="jobsSummary" class="summary"></div>
+        <div id="jobCards" class="cards" style="margin-top:12px"></div>
+      </section>
+    </section>
+
+    <section class="page" id="page-earnings">
+      <div class="grid2">
+        <section class="panel"><div class="head"><div><p class="kicker">Earnings</p><h2>Timed Hustles</h2></div></div><div id="hustleCards" class="cards"></div></section>
+        <section class="panel"><div class="head"><div><p class="kicker">Earnings</p><h2>Limited-Time Jobs</h2></div></div><div id="marketCards" class="cards"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="page-gambling">
+      <section class="panel">
+        <div class="head"><div><p class="kicker">Gambling</p><h2>Cheap Bets To Rare High-End Plays</h2></div></div>
+        <div id="casinoSummary" class="summary"></div>
+        <div class="row" style="margin-top:12px">
+          <input id="gambleAmountInput" class="field" type="number" min="1" step="1" value="100" placeholder="Bet amount">
+          <button id="gambleMaxBtn" class="ghost">Max Cash</button>
+        </div>
+        <div id="casinoCards" class="cards" style="margin-top:12px"></div>
+      </section>
+    </section>
+
+    <section class="page" id="page-assets">
+      <div class="grid2">
+        <section class="panel"><div class="head"><div><p class="kicker">Shop</p><h2>Low Quality To Luxury</h2></div></div><div id="assetCards" class="cards"></div></section>
+        <section class="panel"><div class="head"><div><p class="kicker">Shop</p><h2>Owned Highlights</h2></div></div><div id="assetSummary" class="summary"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="page-owned">
+      <div class="grid2">
+        <section class="panel"><div class="head"><div><p class="kicker">Owned</p><h2>Net Worth</h2></div></div><div id="ownedSummary" class="summary"></div></section>
+        <section class="panel"><div class="head"><div><p class="kicker">Owned</p><h2>Everything You Own</h2></div></div><div id="ownedList" class="summary"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="page-losses">
+      <section class="panel"><div class="head"><div><p class="kicker">Losses</p><h2>Crime, Court, Setbacks</h2></div><div class="row"><button id="lawyerBtn" class="ghost">Hire Lawyer</button><button id="courtBtn" class="sec">Go To Court</button></div></div><div id="crimeSummary" class="summary"></div><div id="crimeCards" class="cards" style="margin-top:12px"></div></section>
+    </section>
+
+    <section class="page" id="page-updates">
+      <div class="grid2">
+        <section class="panel">
+          <div class="head"><div><p class="kicker">Updates</p><h2>Daily Wheel</h2></div><button id="wheelBtn" class="pri">Spin Wheel</button></div>
+          <div class="wheel-wrap"><div class="pointer"></div><div id="wheel" class="wheel"><div class="wheel-mid">SPIN</div></div></div>
+          <div id="wheelSummary" class="summary"></div>
+        </section>
+        <section class="panel"><div class="head"><div><p class="kicker">Updates</p><h2>Possible Rewards</h2></div></div><div id="wheelCards" class="cards"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="grid2">
+        <section class="panel"><div class="head"><div><p class="kicker">History</p><h2>Wealth Graph</h2></div></div><canvas id="chart" width="800" height="320"></canvas></section>
+        <section class="panel"><div class="head"><div><p class="kicker">History</p><h2>Run Breakdown</h2></div></div><div id="historySummary" class="summary"></div></section>
+      </div>
+      <section class="panel" style="margin-top:18px"><div class="head"><div><p class="kicker">History</p><h2>Recent History</h2></div></div><div id="historyLog" class="log"></div></section>
+    </section>
+
+    <section class="page" id="page-bank">
+      <section class="panel">
+        <div class="head"><div><p class="kicker">Bank</p><h2>Balance, Loans, Achievements</h2></div></div>
+        <div id="bankSummary" class="summary"></div>
+        <div class="row">
+          <input id="loanAmountInput" class="field" type="number" min="100" max="1000000" step="100" value="1000" placeholder="Loan amount">
+          <button id="loanBtn" class="pri">Take Loan</button>
+          <button id="repayBtn" class="sec">Repay Loan</button>
+          <button id="donateBtn" class="ghost">Donate To The Poor</button>
+        </div>
+        <div id="achievementSummary" class="summary" style="margin-top:12px"></div>
+        <div class="row" style="margin-top:18px">
+          <button id="restartBtn" class="ghost">Restart Game</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-action">
+      <section class="panel action-box">
+        <div class="head"><div><p class="kicker">Decision</p><h2 id="actionTitle">Action Center</h2></div><button id="actionBackBtn" class="ghost">Back</button></div>
+        <div id="actionSummary" class="summary"></div>
+        <div id="actionChoices" class="action-choices"></div>
+      </section>
+    </section>
+  </div>
+
+  <div id="popups" class="popups"></div>
+  <button id="soundBtn" class="ghost sound-dock">Sound: On</button>
+  <div id="balanceDock" class="balance-dock">
+    <div><span class="muted">Always Visible Balance</span></div>
+    <strong id="dockCash">$0</strong>
+    <div class="muted">Bank: <span id="dockBank">$0</span></div>
+  </div>
+
+  <div id="titleScreen" style="position:fixed;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,rgba(5,11,20,.96),rgba(11,22,48,.96));z-index:20">
+    <div class="panel action-box" style="text-align:center">
+      <div style="font-size:4rem">💵 💰</div>
+      <p class="kicker">Title Screen</p>
+      <h2 style="font-size:2.2rem;margin-bottom:12px">Become The First Trillionare</h2>
+      <div class="muted" id="versionLabel" style="margin-bottom:12px">Version</div>
+      <div class="summary">Build from zero to absurd wealth through jobs, timed earnings, bank growth, assets, gambling, events, and long-term decisions.</div>
+      <div class="summary howto" style="margin-top:12px">
+        <strong>How To Play</strong>
+        <span>1. Start with $100 and build up through jobs, hustles, and side activities.</span>
+        <span>2. Use the bank for hourly interest, but keep an eye on wheel resets, daily pay, and loan deadlines.</span>
+        <span>3. Buy starter items, grow into luxury assets, finish achievements, and push toward one trillion net worth.</span>
+      </div>
+      <div class="row" style="justify-content:center">
+        <button id="startBtn" class="pri">Start Game</button>
+        <button id="titleSoundBtn" class="ghost">Sound: On</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pauseOverlay" style="position:fixed;inset:0;display:none;place-items:center;background:rgba(4,8,16,.82);z-index:19">
+    <div class="panel action-box" style="text-align:center">
+      <p class="kicker">Pause</p>
+      <h2 id="pauseTitle">Game Paused</h2>
+      <div id="pauseSummary" class="summary"></div>
+      <div class="row" style="justify-content:center">
+        <button id="pauseCancelBtn" class="ghost">Resume Game</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="top"><div><h3 class="title"></h3><p class="sub"></p></div><span class="badge"></span></div>
+      <p class="desc"></p>
+      <div class="meta"></div>
+      <button class="card-btn"></button>
+    </article>
+  </template>
+
+  <script>
+    const SAVE_KEY = "bftt-standalone-v3";
+    const SAVE_SCHEMA_VERSION = 2;
+    const GAME_VERSION = "v3.11.6";
+    const PATCH_HISTORY = [
+      {
+        version: "v3.11.6",
+        recent: true,
+        notes: [
+          "Fixed several gameplay access bugs so you can open shop, gambling, and earning actions even when you do not already have enough cash.",
+          "Removed the background music and kept the louder button click sounds.",
+          "Button click sounds were boosted even more again for a much louder interface sound effect.",
+          "Button click sounds were boosted heavily so they are much easier to hear when sound is on.",
+          "Buttons now make a click sound when sound is turned on, so the whole interface feels more responsive.",
+          "Added a publish-ready pass with a clearer title screen, a built-in how-to-play guide, live timer details, sound toggle, mobile polish, and stronger save recovery.",
+          "The daily wheel now shows a live countdown timer to the next Brisbane midnight reset.",
+          "The daily wheel now resets at 12:00 AM Brisbane time instead of depending on the local device date.",
+          "The daily wheel now shows a clear loading symbol while it is spinning, so the spin feels more obvious and polished.",
+          "Fresh runs now stay at $100 until you personally earn money, so automatic systems do not hand out random cash at the start.",
+          "Fresh runs and full restarts now begin with $100 cash instead of starting higher from old fallback behavior.",
+          "Added a much bigger celebration when you reach one trillion net worth.",
+          "Added a top navigation page that shows everything you own and your net worth.",
+          "Added 15 more jobs above the previous top career tier, so the late-game job ladder goes much higher.",
+          "Added a much wider range of things to buy, especially more cars and vehicle upgrades.",
+          "Patch notes now keep a clearer visible update history for player-facing changes.",
+          "Newest visible changes are marked with a red square until the next page reload.",
+          "Hidden balancing details stay out of patch notes when players should not see them.",
+          "Loan warnings now show a red repayment timer in days and minutes.",
+          "Loan size is capped at $1,000,000.",
+          "Bank interest was reduced again."
+        ]
+      },
+      {
+        version: "v3.6.0",
+        recent: false,
+        notes: [
+          "Added small in-between activities so there is more to do while waiting for timers and daily pay."
+        ]
+      },
+      {
+        version: "v3.5.1",
+        recent: false,
+        notes: [
+          "Fixed bank interest so it is granted once per hour instead of being added every second."
+        ]
+      },
+      {
+        version: "v3.5.0",
+        recent: false,
+        notes: [
+          "Added an idle auto-pause screen after 15 minutes without interaction, with easy resume and frozen timers."
+        ]
+      },
+      {
+        version: "v3.4.0",
+        recent: false,
+        notes: [
+          "Buffed daily job pay a little and added more things to buy.",
+          "Timed hustles now lock the hustle board until the active hustle finishes."
+        ]
+      },
+      {
+        version: "v3.3.0-v3.3.1",
+        recent: false,
+        notes: [
+          "Added a startup patch-notes screen with a Cancel button before entering the game.",
+          "Added a visible version label and update markers."
+        ]
+      },
+      {
+        version: "v3.2.x",
+        recent: false,
+        notes: [
+          "Added custom Max buttons for gambling and improved banking actions.",
+          "Added Double Or Nothing gambling with a custom wager."
+        ]
+      },
+      {
+        version: "v3.1.x",
+        recent: false,
+        notes: [
+          "Made job applications clearer with visible failure messages.",
+          "Let players apply for other jobs while employed, with consequences.",
+          "Removed old work sessions and made jobs pay daily at 11:00 AM Brisbane time.",
+          "Made house-fire losses depend on whether you own a home."
+        ]
+      }
+    ];
+    const TRILLION = 1_000_000_000_000;
+    const STARTING_CASH = 100;
+    const INTEREST_RATE = 0.025;
+    const PAUSE_KEY = "bftt-global-pause";
+    const IDLE_PAUSE_MS = 15 * 60 * 1000;
+
+    const pages = [["home","Home"],["economy","Economy"],["jobs","Jobs"],["earnings","Earnings"],["gambling","Gambling"],["assets","Shop"],["owned","Owned"],["losses","Losses"],["updates","Daily Wheel"],["history","History"],["bank","Bank"]];
+    const jobs = [
+      {id:"none",name:"Unemployed Dreamer",power:0,promo:0,next:"dogwalker",tier:0,badge:"Starter",desc:"No salary yet, only raw ambition."},
+      {id:"dogwalker",name:"Dog Walker",power:5,promo:500,next:"barista",tier:1,badge:"Local",desc:"Small, steady money."},
+      {id:"barista",name:"Cafe Barista",power:11,promo:1600,next:"cashier",tier:2,badge:"Service",desc:"Long shifts, low pay."},
+      {id:"cashier",name:"Store Cashier",power:20,promo:5200,next:"sales",tier:3,badge:"Retail",desc:"Bigger checks and more responsibility."},
+      {id:"sales",name:"Retail Sales Rep",power:36,promo:11000,next:"broker",tier:4,badge:"Commission",desc:"Better active earning potential."},
+      {id:"broker",name:"Junior Broker",power:78,promo:32000,next:"developer",tier:5,badge:"Finance",desc:"Fast-moving money and nerves."},
+      {id:"developer",name:"Software Developer",power:144,promo:70000,next:"manager",tier:6,badge:"Tech",desc:"Strong growth and better work sessions."},
+      {id:"manager",name:"Operations Manager",power:372,promo:250000,next:"director",tier:7,badge:"Leadership",desc:"A serious midgame career."},
+      {id:"director",name:"Regional Director",power:870,promo:850000,next:"executive",tier:8,badge:"Corporate",desc:"Strong salary power."},
+      {id:"executive",name:"Company Executive",power:1920,promo:3500000,next:"founder",tier:9,badge:"Elite",desc:"High pressure, elite money."},
+      {id:"founder",name:"Startup Founder",power:5100,promo:12000000,next:"tycoon",tier:10,badge:"Founder",desc:"Built your own machine."},
+      {id:"tycoon",name:"Global Tycoon",power:13200,promo:32000000,next:"megatycoon",tier:11,badge:"Legend",desc:"Absurd scale."},
+      {id:"megatycoon",name:"Mega Tycoon",power:20500,promo:68000000,next:"venturechair",tier:12,badge:"Ultra",desc:"Your empire now moves entire markets."},
+      {id:"venturechair",name:"Venture Capital Chair",power:29800,promo:140000000,next:"hedgeking",tier:13,badge:"Ultra",desc:"Every meeting is about giant money."},
+      {id:"hedgeking",name:"Hedge Fund King",power:42000,promo:260000000,next:"mediaowner",tier:14,badge:"Titan",desc:"Finance at an intimidating scale."},
+      {id:"mediaowner",name:"Media Network Owner",power:58500,promo:420000000,next:"realtestar",tier:15,badge:"Titan",desc:"Influence and income everywhere."},
+      {id:"realtestar",name:"Real Estate Star",power:76000,promo:650000000,next:"industrialist",tier:16,badge:"Titan",desc:"Properties and towers define your portfolio."},
+      {id:"industrialist",name:"Industrialist",power:98000,promo:980000000,next:"shippingboss",tier:17,badge:"Magnate",desc:"Factories, freight, and massive contracts."},
+      {id:"shippingboss",name:"Global Shipping Boss",power:126000,promo:1450000000,next:"oilbaron",tier:18,badge:"Magnate",desc:"You move goods across the planet."},
+      {id:"oilbaron",name:"Oil Baron",power:162000,promo:2100000000,next:"bankchief",tier:19,badge:"Magnate",desc:"One signature shifts energy markets."},
+      {id:"bankchief",name:"Private Bank Chief",power:210000,promo:3000000000,next:"spacefounder",tier:20,badge:"Empire",desc:"You control serious financial power."},
+      {id:"spacefounder",name:"Space Industry Founder",power:270000,promo:4200000000,next:"conglomerate",tier:21,badge:"Empire",desc:"You turned rockets into business."},
+      {id:"conglomerate",name:"Conglomerate Ruler",power:345000,promo:5800000000,next:"worldinvestor",tier:22,badge:"Empire",desc:"Your companies spread across whole sectors."},
+      {id:"worldinvestor",name:"World Investor",power:438000,promo:7800000000,next:"policygiant",tier:23,badge:"Mythic",desc:"Global deals happen at your table."},
+      {id:"policygiant",name:"Policy Giant",power:552000,promo:10300000000,next:"trillionbuilder",tier:24,badge:"Mythic",desc:"Even governments notice your reach."},
+      {id:"trillionbuilder",name:"Trillion Builder",power:694000,promo:13500000000,next:"planetowner",tier:25,badge:"Mythic",desc:"You are visibly closing in on the impossible."},
+      {id:"planetowner",name:"Planet-Scale Owner",power:865000,promo:0,next:null,tier:26,badge:"Apex",desc:"There is almost nothing left to buy or control."}
+    ];
+    const hustles = [
+      {id:"lemonade",name:"Lemonade Stand",cost:81,payout:140,duration:3600,badge:"Starter",desc:"Guaranteed tiny profit, but it takes an hour."},
+      {id:"carwash",name:"Pop-Up Car Wash",cost:324,payout:570,duration:3600,badge:"Local",desc:"Steady low-tier return after a full hour."},
+      {id:"mowing",name:"Lawn Mowing Route",cost:675,payout:1220,duration:3300,badge:"Neighborhood",desc:"Longer work, better guaranteed return."},
+      {id:"thrift",name:"Flip Thrift Finds",cost:2430,payout:4010,duration:3000,badge:"Reseller",desc:"A stronger mid-tier guaranteed flip."},
+      {id:"photos",name:"Sell Stock Photos",cost:4725,payout:7650,duration:2700,badge:"Creative",desc:"Slow creative income with a clear margin."},
+      {id:"foodtruck",name:"Weekend Food Cart",cost:16200,payout:26300,duration:2400,badge:"Busy",desc:"Bigger money, still a guaranteed return."},
+      {id:"repair",name:"Phone Repair Table",cost:52000,payout:86000,duration:2400,badge:"Skilled",desc:"A stronger upper-mid earning option."},
+      {id:"boutique",name:"Streetwear Pop-Up",cost:180000,payout:305000,duration:2100,badge:"Premium",desc:"Expensive stock, strong return."},
+      {id:"expo",name:"Convention Booth",cost:720000,payout:1230000,duration:1800,badge:"Event",desc:"A large-scale event play for richer runs."}
+    ];
+    const marketJobs = [
+      {id:"moving",name:"Emergency Moving Help",cost:0,payout:820,duration:180,window:900,cooldown:900,desc:"Urgent same-day work with a cooldown before the next one."},
+      {id:"petcare",name:"Holiday Pet Sitting",cost:225,payout:980,duration:240,window:900,cooldown:900,desc:"Seasonal demand, but not spam-friendly."},
+      {id:"cleanup",name:"Storm Cleanup Crew",cost:975,payout:2200,duration:300,window:900,cooldown:1200,desc:"Messy work with a real break between jobs."},
+      {id:"concert",name:"Concert Merch Crisis",cost:4500,payout:7400,duration:360,window:900,cooldown:1500,desc:"Solid money, but the next call takes time."},
+      {id:"courier",name:"Urgent Courier Run",cost:18000,payout:31500,duration:420,window:900,cooldown:1800,desc:"Better payoff, longer wait for another client."}
+    ];
+    const assets = [
+      {id:"crate",name:"Plastic Storage Crate",cost:40,badge:"Low Quality",desc:"Cheap, flimsy, and barely useful."},
+      {id:"toolkit",name:"Budget Toolkit",cost:120,badge:"Low Quality",desc:"Good enough to unlock rough starter work."},
+      {id:"bike",name:"Delivery Bike",cost:900,badge:"Starter",desc:"A first real upgrade."},
+      {id:"skateboard",name:"Used Skateboard",cost:1500,badge:"Starter",desc:"A tiny mobility upgrade for early runs."},
+      {id:"scooter",name:"Worn Scooter",cost:4800,badge:"Budget",desc:"Not glamorous, but helpful."},
+      {id:"moped",name:"Cheap Moped",cost:9600,badge:"Budget",desc:"A louder, faster early vehicle."},
+      {id:"phonecart",name:"Street Repair Cart",cost:18000,badge:"Utility",desc:"Basic rolling equipment for side work."},
+      {id:"usedcar",name:"Used Car",cost:28000,badge:"Vehicle",desc:"A practical goal."},
+      {id:"compactcar",name:"Compact Hatchback",cost:48000,badge:"Vehicle",desc:"A reliable low-end city car."},
+      {id:"sedan",name:"Mid-Range Sedan",cost:82000,badge:"Vehicle",desc:"A cleaner, more respectable upgrade."},
+      {id:"pickup",name:"Used Pickup Truck",cost:135000,badge:"Vehicle",desc:"Helpful for hauling and tougher work."},
+      {id:"hybrid",name:"Hybrid Commuter Car",cost:220000,badge:"Vehicle",desc:"More refined and efficient."},
+      {id:"vanfleet",name:"Small Van Fleet",cost:340000,badge:"Vehicle",desc:"A first real logistics jump."},
+      {id:"garage",name:"Rental Garage",cost:450000,badge:"Property",desc:"A compact property milestone."},
+      {id:"sports",name:"Sports Coupe",cost:680000,badge:"Luxury Car",desc:"Fast and flashy, finally."},
+      {id:"apartment",name:"Tiny Apartment",cost:950000,badge:"Home",desc:"A believable first home target."},
+      {id:"luxurysuv",name:"Luxury SUV",cost:1450000,badge:"Luxury Car",desc:"Comfort, size, and status."},
+      {id:"supercar",name:"Supercar",cost:3200000,badge:"Supercar",desc:"A serious rich-player flex."},
+      {id:"house",name:"Modern House",cost:5000000,badge:"Home",desc:"A major lifestyle goal."},
+      {id:"duplex",name:"Duplex Rental",cost:8500000,badge:"Property",desc:"A real property jump."},
+      {id:"hypercar",name:"Hypercar",cost:12000000,badge:"Hypercar",desc:"Absurd speed for absurd money."},
+      {id:"laundromat",name:"Neighborhood Laundromat",cost:12000000,badge:"Business",desc:"A business ownership milestone."},
+      {id:"yacht",name:"Coastal Yacht",cost:18500000,badge:"Luxury",desc:"A floating money flex."},
+      {id:"arcade",name:"Retro Arcade",cost:22000000,badge:"Business",desc:"Fun, flashy, and expensive."},
+      {id:"racefleet",name:"Collector Race Fleet",cost:32000000,badge:"Luxury Car",desc:"Multiple elite performance cars in one collection."},
+      {id:"carcollection",name:"Luxury Car Collection",cost:45000000,badge:"Luxury",desc:"A prestige flex."},
+      {id:"privatejet",name:"Private Jet",cost:78000000,badge:"Luxury",desc:"A top-tier convenience upgrade."},
+      {id:"startup",name:"Tech Startup",cost:125000000,badge:"Business",desc:"Big-money founder territory."},
+      {id:"megaestate",name:"Mega Estate",cost:240000000,badge:"Luxury",desc:"A huge modern estate with every extra."},
+      {id:"hotel",name:"Boutique Hotel",cost:420000000,badge:"Business",desc:"A premium late-game hospitality asset."},
+      {id:"mall",name:"Shopping Mall",cost:650000000,badge:"Mega Asset",desc:"A huge late-game target."},
+      {id:"resort",name:"Island Resort",cost:1250000000,badge:"Mega Asset",desc:"A giant luxury destination."},
+      {id:"themepark",name:"Whole Theme Park",cost:2200000000,badge:"Mega Asset",desc:"Ridiculous scale and cost."}
+    ];
+    const crimes = [
+      {id:"shoplift",name:"Shoplift Gadgets",reward:1035,catchChance:.18,desc:"Small score, still dangerous."},
+      {id:"boostcar",name:"Steal A Sports Car",reward:27600,catchChance:.33,desc:"Big reward with real risk."},
+      {id:"hacking",name:"Run A Crypto Scam",reward:149500,catchChance:.41,desc:"Online crime gets attention."}
+    ];
+    const wheelRewards = [
+      {label:"Cash stack",type:"money",value:5000,weight:24},
+      {label:"Big cash burst",type:"money",value:25000,weight:19},
+      {label:"Interest surge",type:"boost",value:12000,weight:14},
+      {label:"Instant hustle payout",type:"instant",value:1,weight:12},
+      {label:"Lucky shield",type:"shield",value:1,weight:10},
+      {label:"Gold rain",type:"money",value:150000,weight:9},
+      {label:"Free toolkit",type:"asset",value:"toolkit",weight:5},
+      {label:"Mega vault",type:"money",value:500000,weight:5},
+      {label:"Million drop",type:"money",value:1000000,weight:2}
+    ];
+    const casinoGames = [
+      {id:"doubleup",name:"Double Or Nothing",cost:0,badge:"Custom",desc:"Bet any cash amount. You either lose it all or double it.",outcomes:[{label:"Double",multiplier:2,weight:50},{label:"Lose it all",multiplier:0,weight:50}]},
+      {id:"scratch",name:"Pocket Scratchie",cost:120,badge:"Cheap",desc:"A tiny quick gamble for starter players.",outcomes:[{label:"Win a little",delta:55,weight:28},{label:"Break even",delta:0,weight:24},{label:"Small miss",delta:-45,weight:28},{label:"Lucky hit",delta:380,weight:16},{label:"Rare mini-jackpot",delta:1500,weight:4}]},
+      {id:"spinner",name:"Risk Spinner",cost:3500,badge:"Classic",desc:"You can lose a lot or win a lot.",outcomes:[{label:"Small win",delta:2450,weight:18},{label:"Break even",delta:0,weight:16},{label:"Bad beat",delta:-4200,weight:22},{label:"Nice hit",delta:9000,weight:18},{label:"Rough loss",delta:-12000,weight:18},{label:"Huge jackpot",delta:76000,weight:8}]},
+      {id:"dice",name:"High Roll Dice",cost:14000,badge:"Swingy",desc:"Much wilder upside and downside.",outcomes:[{label:"Big climb",delta:32000,weight:18},{label:"Lucky streak",delta:18500,weight:18},{label:"Flat roll",delta:0,weight:14},{label:"Cold table",delta:-22000,weight:20},{label:"Crushed",delta:-62000,weight:20},{label:"Monstrous hit",delta:180000,weight:10}]},
+      {id:"vault",name:"Diamond Vault",cost:85000,badge:"Rare",desc:"High-cost rare gambling with brutal losses and rare huge wins.",outcomes:[{label:"Vault payout",delta:145000,weight:24},{label:"Strong hit",delta:52000,weight:18},{label:"Nothing special",delta:0,weight:12},{label:"Heavy loss",delta:-125000,weight:22},{label:"Vault disaster",delta:-260000,weight:18},{label:"Legendary pull",delta:1200000,weight:6}]}
+    ];
+    const lawyerTiers = [
+      {id:"basic",name:"Basic Lawyer",cost:18000,reduction:0.075},
+      {id:"senior",name:"Senior Lawyer",cost:72000,reduction:0.15},
+      {id:"elite",name:"Elite Lawyer Team",cost:240000,reduction:0.225}
+    ];
+    const events = [
+      {type:"good",title:"Small rebate arrived",amount:220,text:"A small rebate came back to you."},
+      {type:"good",title:"Second-hand item sold",amount:380,text:"You sold something you did not need."},
+      {type:"bad",title:"You got robbed",amount:-450,text:"A thief got away with some of your cash."},
+      {type:"bad",title:"Phone cracked",amount:-260,text:"You had to pay for a repair."},
+      {type:"bad",title:"Emergency repair",amount:-900,text:"Something broke at the worst possible time."},
+      {type:"bad",title:"House fire damage",amount:-18000,text:"A serious fire caused expensive damage."}
+    ];
+    const challenges = [
+      {id:"math1",prompt:"A client asks: what is 12 x 8?",options:["86","96","108"],answer:"96",reward:90},
+      {id:"math2",prompt:"Quick puzzle: what is 25 + 17?",options:["42","41","48"],answer:"42",reward:130},
+      {id:"logic1",prompt:"Which one is a vehicle?",options:["Garage","Scooter","Fence"],answer:"Scooter",reward:180},
+      {id:"math3",prompt:"A sale doubles $450. What is it now?",options:["$700","$900","$950"],answer:"$900",reward:260}
+    ];
+    const sideActivities = [
+      {id:"network",name:"Network Online",reward:120,cooldown:90,badge:"Quick",desc:"Send messages and build small leads while you wait."},
+      {id:"survey",name:"Answer Surveys",reward:220,cooldown:150,badge:"Steady",desc:"Boring, but it fills downtime with a small payout."},
+      {id:"organize",name:"Organize Inventory",reward:360,cooldown:240,badge:"Useful",desc:"A tidy setup helps you recover little bits of value."},
+      {id:"study",name:"Skill Practice",reward:520,cooldown:360,badge:"Focus",desc:"A more demanding filler activity with a better reward."}
+    ];
+
+    const achievements = Array.from({length:100}, (_, i) => {
+      const n = i + 1;
+      if (n <= 25) return {id:`worth-${n}`,label:`Net Worth Tier ${n}`,check:()=>netWorth() >= n * 1000,reward:50 + n * 10};
+      if (n <= 50) return {id:`bank-${n}`,label:`Bank Saver ${n-25}`,check:()=>state.bank >= (n - 25) * 2500,reward:120 + (n - 25) * 12};
+      if (n <= 70) return {id:`asset-${n}`,label:`Collector ${n-50}`,check:()=>state.assets.length >= (n - 50),reward:160 + (n - 50) * 18};
+      if (n <= 85) return {id:`job-${n}`,label:`Career Climber ${n-70}`,check:()=>currentJob().tier >= (n - 70),reward:220 + (n - 70) * 25};
+      return {id:`play-${n}`,label:`Veteran ${n-85}`,check:()=>state.history.length >= (n - 85) * 25,reward:350 + (n - 85) * 40};
+    });
+    const state = {saveVersion:SAVE_SCHEMA_VERSION,money:STARTING_CASH,bank:0,job:"none",boostUntil:0,lastInterestAt:Date.now(),activeJobs:[],market:null,marketUntil:0,marketCooldownUntil:0,assets:[],log:[],lastWheel:null,shields:0,insurance:false,case:null,lawyer:0,jailUntil:0,page:"home",stats:{spins:0,gambles:0,crimes:0,courtWins:0,courtLosses:0},history:[],challenge:"math1",challengeTimerEnd:0,nextChallengeAt:Date.now()+((15+Math.floor(Math.random()*31))*60*1000),activityCooldowns:{},recentApplications:[],actionReturnPage:"home",adminUnlocked:false,adminRetryAt:0,achievementsClaimed:[],loans:[],lastDailyPayDate:null,ownedViaLoan:null,titleVisible:true,idlePaused:false,idlePausedAt:0,lastInteractionAt:Date.now(),restartPending:false,restartEndsAt:0,won:false,manualIncomeUnlocked:false,wheelSpinning:false,soundEnabled:true};
+
+    const $ = (id) => document.getElementById(id);
+    const ui = {cash:$("cash"),bank:$("bank"),worth:$("worth"),interest:$("interest"),status:$("status"),risk:$("risk"),dockCash:$("dockCash"),dockBank:$("dockBank"),homeSummary:$("homeSummary"),timerSummary:$("timerSummary"),marketSummary:$("marketSummary"),eventSummary:$("eventSummary"),adminSummary:$("adminSummary"),jobSummary:$("jobSummary"),jobsSummary:$("jobsSummary"),bankSummary:$("bankSummary"),achievementSummary:$("achievementSummary"),challengeSummary:$("challengeSummary"),challengeCards:$("challengeCards"),activitySummary:$("activitySummary"),activityCards:$("activityCards"),hustleCards:$("hustleCards"),marketCards:$("marketCards"),jobCards:$("jobCards"),assetCards:$("assetCards"),assetSummary:$("assetSummary"),ownedSummary:$("ownedSummary"),ownedList:$("ownedList"),crimeCards:$("crimeCards"),crimeSummary:$("crimeSummary"),wheelSummary:$("wheelSummary"),wheelCards:$("wheelCards"),casinoSummary:$("casinoSummary"),casinoCards:$("casinoCards"),historySummary:$("historySummary"),historyLog:$("historyLog"),chart:$("chart"),nav:$("nav"),popups:$("popups"),wheel:$("wheel"),tpl:$("cardTemplate"),actionTitle:$("actionTitle"),actionSummary:$("actionSummary"),actionChoices:$("actionChoices"),actionBackBtn:$("actionBackBtn"),bankAmountInput:$("bankAmountInput"),loanAmountInput:$("loanAmountInput"),gambleAmountInput:$("gambleAmountInput"),balanceDock:$("balanceDock"),titleScreen:$("titleScreen"),startBtn:$("startBtn"),restartBtn:$("restartBtn"),versionLabel:$("versionLabel"),gambleMaxBtn:$("gambleMaxBtn"),pauseOverlay:$("pauseOverlay"),pauseTitle:$("pauseTitle"),pauseSummary:$("pauseSummary"),pauseCancelBtn:$("pauseCancelBtn"),soundBtn:$("soundBtn"),titleSoundBtn:$("titleSoundBtn")};
+
+    const fmt = (v) => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:v>=1000?0:2}).format(v);
+    const chooseWeighted = (items) => { let total = items.reduce((s,i)=>s+i.weight,0), roll = Math.random()*total; for (const item of items) { roll -= item.weight; if (roll <= 0) return item; } return items[items.length - 1]; };
+    const currentJob = () => jobs.find(j => j.id === state.job) || jobs[0];
+    const assetById = (id) => assets.find(a => a.id === id);
+    const countAsset = (id) => state.assets.filter(a => a === id).length;
+    const netWorth = () => state.money + state.bank + state.assets.reduce((s,id)=>s + (assetById(id)?.cost || 0), 0);
+    const hasAllAchievements = () => state.achievementsClaimed.length >= achievements.length;
+    const ownsEveryAsset = () => assets.every(a => countAsset(a.id) > 0);
+    const ownedHomes = () => ["apartment","house","duplex"].map(id => assetById(id)).filter(a => a && countAsset(a.id) > 0);
+    const mostExpensiveOwnedHome = () => ownedHomes().sort((a,b) => b.cost - a.cost)[0] || null;
+    const inJail = () => Date.now() < state.jailUntil;
+    const canAct = () => !inJail() && !state.titleVisible && !state.idlePaused;
+    const hourlyInterest = () => state.bank * INTEREST_RATE * (Date.now() < state.boostUntil ? 1.6 : 1);
+    const activeChallenge = () => challenges.find(c => c.id === state.challenge) || challenges[0];
+    const brisbaneNow = () => new Date(new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" }));
+    const brisbaneDayKey = () => new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Australia/Brisbane",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(new Date());
+    const timeUntilBrisbaneMidnight = () => {
+      const now = brisbaneNow();
+      const next = new Date(now);
+      next.setHours(24, 0, 0, 0);
+      const diff = Math.max(0, next - now);
+      const hours = Math.floor(diff / (60 * 60 * 1000));
+      const minutes = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
+      const seconds = Math.floor((diff % (60 * 1000)) / 1000);
+      return `${hours}h ${minutes}m ${seconds}s`;
+    };
+    const isTacoTuesday = () => {
+      const now = brisbaneNow();
+      const day = now.getDay();
+      const hour = now.getHours();
+      return day === 2 && hour >= 9 && hour < 11;
+    };
+    const bankAmount = () => Math.max(1, Math.floor(Number(ui.bankAmountInput?.value) || 100));
+    const gambleAmount = () => Math.max(1, Math.floor(Number(ui.gambleAmountInput.value) || 0));
+    const actionAmount = (fallback = 100) => Math.max(1, Math.floor(Number(document.getElementById("actionAmountInput")?.value) || fallback));
+    let audioContext = null;
+
+    function formatCountdown(ms) {
+      const total = Math.max(0, Math.ceil(ms / 1000));
+      const days = Math.floor(total / 86400);
+      const hours = Math.floor((total % 86400) / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      const seconds = total % 60;
+      if (days > 0) return `${days}d ${hours}h ${minutes}m`;
+      if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
+      return `${minutes}m ${seconds}s`;
+    }
+
+    function timeUntilDailyPay() {
+      const now = brisbaneNow();
+      const next = new Date(now);
+      if (now.getHours() >= 11) next.setDate(next.getDate() + 1);
+      next.setHours(11, 0, 0, 0);
+      return formatCountdown(next - now);
+    }
+
+    function ensureAudio() {
+      if (audioContext || !state.soundEnabled) return;
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      audioContext = new Ctx();
+    }
+
+    function playSound(kind = "soft") {
+      if (!state.soundEnabled) return;
+      ensureAudio();
+      if (!audioContext) return;
+      const now = audioContext.currentTime;
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const config = kind === "bad"
+        ? { freq: 180, end: 120, gain: 35, dur: 0.18 }
+        : kind === "good"
+          ? { freq: 540, end: 760, gain: 40, dur: 0.16 }
+          : { freq: 360, end: 440, gain: 25, dur: 0.12 };
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(config.freq, now);
+      osc.frequency.exponentialRampToValueAtTime(config.end, now + config.dur);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(config.gain, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + config.dur);
+      osc.connect(gain).connect(audioContext.destination);
+      osc.start(now);
+      osc.stop(now + config.dur);
+    }
+
+    function toggleSound() {
+      state.soundEnabled = !state.soundEnabled;
+      renderSoundButtons();
+      save();
+      if (state.soundEnabled) playSound("soft");
+    }
+
+    function renderSoundButtons() {
+      const label = `Sound: ${state.soundEnabled ? "On" : "Off"}`;
+      if (ui.soundBtn) ui.soundBtn.textContent = label;
+      if (ui.titleSoundBtn) ui.titleSoundBtn.textContent = label;
+    }
+
+    function checkAchievements() {
+      achievements.forEach((a) => {
+        if (!state.achievementsClaimed.includes(a.id) && a.check()) {
+          state.achievementsClaimed.push(a.id);
+          state.money += a.reward;
+          addLog("Achievement unlocked", `${a.label} rewarded ${fmt(a.reward)}.`, "positive");
+          popup("Achievement unlocked", a.reward, false);
+        }
+      });
+    }
+
+    function migrateLoadedState(saved) {
+      Object.assign(state, saved);
+      if ((saved?.saveVersion || 0) !== SAVE_SCHEMA_VERSION) {
+        state.saveVersion = SAVE_SCHEMA_VERSION;
+        state.wheelSpinning = false;
+        state.restartPending = false;
+        state.restartEndsAt = 0;
+        state.idlePaused = false;
+        state.idlePausedAt = 0;
+        state.actionReturnPage = "home";
+        state.adminRetryAt = 0;
+      }
+    }
+    function save() { state.saveVersion = SAVE_SCHEMA_VERSION; localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }
+    function load() { try { const raw = localStorage.getItem(SAVE_KEY); if (raw) migrateLoadedState(JSON.parse(raw)); } catch {} }
+    function sanitizeState() {
+      if (!jobs.some(j => j.id === state.job)) state.job = "none";
+      if (!Array.isArray(state.assets)) state.assets = [];
+      state.assets = state.assets.filter(id => !!assetById(id));
+      if (!Array.isArray(state.activeJobs)) state.activeJobs = [];
+      if (!state.activityCooldowns || typeof state.activityCooldowns !== "object") state.activityCooldowns = {};
+      if (!Array.isArray(state.recentApplications)) state.recentApplications = [];
+      if (!Array.isArray(state.history)) state.history = [];
+      if (!Array.isArray(state.log)) state.log = [];
+      if (!pages.some(([id]) => id === state.page)) state.page = "home";
+      if (!Number.isFinite(state.lastInterestAt)) state.lastInterestAt = Date.now();
+      if (typeof state.idlePaused !== "boolean") state.idlePaused = false;
+      if (!Number.isFinite(state.idlePausedAt)) state.idlePausedAt = 0;
+      if (!Number.isFinite(state.lastInteractionAt)) state.lastInteractionAt = Date.now();
+      if (typeof state.soundEnabled !== "boolean") state.soundEnabled = true;
+      if (typeof state.manualIncomeUnlocked !== "boolean") state.manualIncomeUnlocked = false;
+      if (typeof state.wheelSpinning !== "boolean") state.wheelSpinning = false;
+      if (!Array.isArray(state.loans)) state.loans = [];
+      if (!Number.isFinite(state.saveVersion)) state.saveVersion = SAVE_SCHEMA_VERSION;
+    }
+
+    function resetStateData() {
+      Object.assign(state, {
+        money: STARTING_CASH,
+        bank: 0,
+        job: "none",
+        boostUntil: 0,
+        lastInterestAt: Date.now(),
+        activeJobs: [],
+        market: null,
+        marketUntil: 0,
+        marketCooldownUntil: 0,
+        assets: [],
+        log: [],
+        lastWheel: null,
+        shields: 0,
+        insurance: false,
+        case: null,
+        lawyer: 0,
+        jailUntil: 0,
+        page: "home",
+        stats: { spins: 0, gambles: 0, crimes: 0, courtWins: 0, courtLosses: 0 },
+        history: [],
+        challenge: "math1",
+        challengeTimerEnd: 0,
+        nextChallengeAt: Date.now() + ((15 + Math.floor(Math.random() * 31)) * 60 * 1000),
+        activityCooldowns: {},
+        recentApplications: [],
+        actionReturnPage: "home",
+        adminUnlocked: false,
+        adminRetryAt: 0,
+        achievementsClaimed: [],
+        loans: [],
+        lastDailyPayDate: null,
+        ownedViaLoan: null,
+        titleVisible: true,
+        idlePaused: false,
+        idlePausedAt: 0,
+        lastInteractionAt: Date.now(),
+        restartPending: false,
+        restartEndsAt: 0,
+        won: false,
+        manualIncomeUnlocked: false,
+        wheelSpinning: false,
+        soundEnabled: true,
+        saveVersion: SAVE_SCHEMA_VERSION
+      });
+    }
+    function popup(title, amount, bad = false) { const el = document.createElement("div"); el.className = `popup ${bad ? "bad" : ""}`.trim(); el.innerHTML = `<strong>${title}</strong><div>${amount >= 0 ? "+" : ""}${fmt(amount)}</div>`; ui.popups.appendChild(el); playSound(bad ? "bad" : amount > 0 ? "good" : "soft"); setTimeout(() => el.remove(), 2800); }
+    function addLog(title, text, tone = "neutral") { state.log.unshift({ title, text, tone, time: new Date().toLocaleTimeString() }); state.log = state.log.slice(0, 28); renderLog(); save(); }
+    function money(amount, title, tone = amount >= 0 ? "positive" : "negative") { state.money = Math.max(0, state.money + amount); addLog(title, `${amount >= 0 ? "+" : ""}${fmt(amount)}.`, tone); popup(title, amount, amount < 0); }
+    function earnedMoney(amount, title, tone = amount >= 0 ? "positive" : "negative") {
+      if (amount > 0) state.manualIncomeUnlocked = true;
+      money(amount, title, tone);
+    }
+
+    function celebrateTrillion() {
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => popup("TRILLION!", 1_000_000, false), i * 180);
+      }
+      openAction("TRILLIONAIRE ACHIEVED", `<div style="font-size:3rem;margin-bottom:12px;color:#ffd36c">GOLD RUSH</div><strong>You became the first trillionaire.</strong><br><br>Your net worth has crossed ${fmt(TRILLION)}.<br>The whole run built toward this moment.<br><br><span style="color:#7ef0c1">Massive congratulations. You finished one of the hardest goals in the game.</span>`, [
+        { label: "Celebrate", primary: true, onClick: () => setPage("home") },
+        { label: "View Owned", secondary: true, onClick: () => setPage("owned") },
+        { label: "View History", secondary: true, onClick: () => setPage("history") }
+      ], "home");
+    }
+
+    function card(cfg, onClick, item) {
+      const node = ui.tpl.content.cloneNode(true);
+      node.querySelector(".title").textContent = cfg.title;
+      node.querySelector(".sub").textContent = cfg.sub;
+      node.querySelector(".badge").textContent = cfg.badge;
+      node.querySelector(".desc").textContent = cfg.desc;
+      node.querySelector(".meta").innerHTML = cfg.meta.map(m => `<span>${m}</span>`).join("");
+      const btn = node.querySelector(".card-btn");
+      btn.textContent = cfg.button;
+      btn.disabled = !!cfg.disabled;
+      btn.addEventListener("click", () => onClick(item));
+      return node;
+    }
+
+    function setNextChallengeTime() {
+      state.nextChallengeAt = Date.now() + ((15 + Math.floor(Math.random() * 31)) * 60 * 1000);
+      state.challengeTimerEnd = 0;
+    }
+
+    function openAction(title, summary, choices, returnPage = state.page) {
+      state.actionReturnPage = returnPage;
+      ui.actionTitle.textContent = title;
+      ui.actionSummary.innerHTML = summary;
+      ui.actionChoices.innerHTML = "";
+      choices.forEach((choice) => {
+        const btn = document.createElement("button");
+        btn.className = choice.primary ? "choice-btn pri" : choice.secondary ? "choice-btn sec" : "choice-btn ghost";
+        btn.textContent = choice.label;
+        btn.disabled = !!choice.disabled;
+        btn.addEventListener("click", choice.onClick);
+        ui.actionChoices.appendChild(btn);
+      });
+      setPage("action");
+    }
+
+    function openResult(title, summary, returnPage = state.actionReturnPage || "home") {
+      openAction(title, summary, [
+        { label: "Back", primary: true, onClick: () => setPage(returnPage) }
+      ], returnPage);
+    }
+
+    function finishAction(title, summary, returnPage) {
+      render();
+      openResult(title, summary, returnPage);
+    }
+
+    function drawChart() {
+      const c = ui.chart, ctx = c.getContext("2d"), w = c.width, h = c.height;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(7,17,32,.95)";
+      ctx.fillRect(0, 0, w, h);
+      const pts = state.history.slice(-40);
+      if (pts.length < 2) return;
+      const max = Math.max(...pts), min = Math.min(...pts), range = Math.max(1, max - min);
+      ctx.strokeStyle = "rgba(255,255,255,.08)";
+      for (let i = 0; i < 5; i++) {
+        const y = 20 + (h - 40) * (i / 4);
+        ctx.beginPath(); ctx.moveTo(30, y); ctx.lineTo(w - 20, y); ctx.stroke();
+      }
+      ctx.strokeStyle = "#7ef0c1";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      pts.forEach((p, i) => {
+        const x = 30 + ((w - 60) * i) / (pts.length - 1);
+        const y = h - 20 - ((p - min) / range) * (h - 50);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    function safeRun(fn, fallback) {
+      try {
+        fn();
+      } catch (error) {
+        console.error(error);
+        if (fallback) fallback(error);
+      }
+    }
+
+    function setTitleVisible(visible) {
+      state.titleVisible = visible;
+      ui.titleScreen.style.display = visible ? "grid" : "none";
+      document.body.style.overflow = visible ? "hidden" : "";
+      save();
+    }
+
+    function fmtDuration(ms) {
+      const total = Math.max(0, Math.floor(ms / 1000));
+      const hours = Math.floor(total / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      const seconds = total % 60;
+      return hours > 0
+        ? `${hours}h ${minutes}m ${seconds}s`
+        : `${minutes}m ${seconds}s`;
+    }
+
+    function fmtLoanTime(ms) {
+      const totalMinutes = Math.max(0, Math.floor(ms / 60000));
+      const days = Math.floor(totalMinutes / (24 * 60));
+      const minutes = totalMinutes % (24 * 60);
+      return `${days} day(s) ${minutes} minute(s)`;
+    }
+
+    function shiftPausedTimers(delta) {
+      state.activeJobs.forEach(job => { job.endsAt += delta; });
+      if (state.marketUntil > 0) state.marketUntil += delta;
+      if (state.marketCooldownUntil > 0) state.marketCooldownUntil += delta;
+      if (state.boostUntil > 0) state.boostUntil += delta;
+      if (state.lastInterestAt > 0) state.lastInterestAt += delta;
+      if (state.jailUntil > 0) state.jailUntil += delta;
+      if (state.challengeTimerEnd > 0) state.challengeTimerEnd += delta;
+      if (state.nextChallengeAt > 0) state.nextChallengeAt += delta;
+      state.loans.forEach(loan => { loan.dueAt += delta; });
+    }
+
+    function updatePauseOverlay() {
+      if (!state.idlePaused) {
+        ui.pauseOverlay.style.display = "none";
+        return;
+      }
+      ui.pauseOverlay.style.display = "grid";
+      ui.pauseTitle.textContent = "Idle Pause";
+      ui.pauseCancelBtn.textContent = "Resume Game";
+      ui.pauseSummary.innerHTML = `The game paused after 15 minutes without interaction.<br>Inactive for: <strong>${fmtDuration(Date.now() - state.lastInteractionAt)}</strong><br>Timers are frozen until you resume.`;
+    }
+
+    function markInteraction() {
+      if (state.idlePaused) return;
+      state.lastInteractionAt = Date.now();
+    }
+
+    function enterIdlePause() {
+      if (state.idlePaused || state.titleVisible) return;
+      state.idlePaused = true;
+      state.idlePausedAt = Date.now();
+      updatePauseOverlay();
+      save();
+    }
+
+    function resumeIdlePause() {
+      if (!state.idlePaused) return;
+      const delta = Math.max(0, Date.now() - state.idlePausedAt);
+      shiftPausedTimers(delta);
+      state.idlePaused = false;
+      state.idlePausedAt = 0;
+      state.lastInteractionAt = Date.now();
+      updatePauseOverlay();
+      render();
+      save();
+    }
+
+    function checkIdlePause() {
+      if (state.titleVisible || state.idlePaused) return;
+      if (Date.now() - state.lastInteractionAt >= IDLE_PAUSE_MS) enterIdlePause();
+    }
+
+    function renderLog() {
+      ui.historyLog.innerHTML = state.log.map(e => `<div class="entry"><strong class="${e.tone === "positive" ? "good" : e.tone === "negative" ? "bad" : ""}">${e.title}</strong><div>${e.text}</div><small class="muted">${e.time}</small></div>`).join("");
+    }
+
+    function setPage(page) {
+      state.page = page;
+      document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === `page-${page}`));
+      document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.page === page));
+      save();
+    }
+
+    function renderNav() {
+      ui.nav.innerHTML = "";
+      pages.forEach(([id, label]) => {
+        const b = document.createElement("button");
+        b.className = `nav-btn ${state.page === id ? "active" : ""}`.trim();
+        b.dataset.page = id;
+        b.textContent = label;
+        b.addEventListener("click", () => setPage(id));
+        ui.nav.appendChild(b);
+      });
+    }
+
+    function renderHome() {
+      document.body.classList.toggle("taco-mode", isTacoTuesday());
+      ui.homeSummary.innerHTML = `<strong>Current job: ${currentJob().name}</strong><br>Daily pay at 11:00 AM Brisbane time: ${fmt(Math.max(20, Math.round(currentJob().power * 1.4)))}<br>Bank balance: ${fmt(state.bank)}<br>Interest income: ${fmt(hourlyInterest())}/hour<br>Active hustles: ${state.activeJobs.length}<br>Goal progress: ${fmt(netWorth())} / ${fmt(TRILLION)}`;
+      const activeHustle = state.activeJobs[0];
+      const activeLoan = state.loans[0];
+      const challengeWait = Math.max(0, state.nextChallengeAt - Date.now());
+      ui.timerSummary.innerHTML = `<strong>Current timers</strong><br>Daily pay: ${currentJob().id === "none" ? "Get a job to unlock daily pay." : `in ${timeUntilDailyPay()}`}<br>Daily wheel reset: in ${timeUntilBrisbaneMidnight()}<br>Challenge: ${challengeWait > 0 ? `ready in ${formatCountdown(challengeWait)}` : "ready now"}<br>Active hustle: ${activeHustle ? `${activeHustle.name} finishes in ${formatCountdown(activeHustle.endsAt - Date.now())}` : "none running"}<br>Loan: ${activeLoan ? `${fmt(activeLoan.remaining)} due in ${formatCountdown(activeLoan.dueAt - Date.now())}` : "no active loan"}`;
+      ui.marketSummary.innerHTML = state.market && Date.now() < state.marketUntil
+        ? `${state.market.name} is active for ${Math.ceil((state.marketUntil - Date.now()) / 1000)} more seconds.<br>Cooldown after taking it: ${Math.ceil(Math.max(0, state.marketCooldownUntil - Date.now()) / 1000)} seconds.`
+        : Date.now() < state.marketCooldownUntil
+          ? `No emergency jobs right now.<br>Next one can appear in ${Math.ceil((state.marketCooldownUntil - Date.now()) / 1000)} seconds.`
+          : `A new limited job is about to rotate in.<br>Own ${state.assets.length} total items and assets.`;
+      ui.eventSummary.innerHTML = `${state.insurance ? "Insurance active: bad event losses are halved." : "No insurance: bad events hit full force."}<br>${state.shields > 0 ? `Lucky shields: ${state.shields}` : "No lucky shields saved."}`;
+      if (isTacoTuesday()) {
+        ui.eventSummary.innerHTML += `<br><strong>Taco Tuesday Live Event</strong>: exclusive boosts and lucky taco rewards are active from 9:00 AM to 11:00 AM Brisbane time.`;
+      }
+      $("depositBtn").disabled = state.money < 100;
+      $("withdrawBtn").disabled = state.bank < 100;
+      $("insuranceBtn").disabled = state.insurance || state.money < 18000 || !canAct();
+      $("insuranceBtn").textContent = state.insurance ? "Insurance Active ($18,000)" : "Buy Insurance ($18,000)";
+      ui.adminSummary.style.display = state.adminUnlocked ? "block" : "none";
+      if (state.adminUnlocked) {
+        ui.adminSummary.innerHTML = `Admin unlocked.<br>You can grant money from the admin menu when needed.`;
+      }
+    }
+
+    function renderEconomy() {
+      const cj = currentJob(), next = cj.next ? jobs.find(j => j.id === cj.next) : null;
+      ui.jobSummary.innerHTML = `<strong>Current job:</strong> ${cj.name}<br><strong>Daily pay at 11:00 AM Brisbane time:</strong> ${fmt(Math.max(20, Math.round(cj.power * 1.4)))}<br>${next ? `Promotion target: ${next.name} for ${fmt(cj.promo)}.` : "You are already at the highest career tier."}<br>Banking is your only passive money source.`;
+      const ch = activeChallenge();
+      const remaining = Math.max(0, state.nextChallengeAt - Date.now());
+      const timer = state.challengeTimerEnd ? Math.max(0, Math.ceil((state.challengeTimerEnd - Date.now()) / 1000)) : 0;
+      ui.challengeSummary.innerHTML = remaining > 0
+        ? `<strong>Mini challenge locked</strong><br>Next challenge appears in about ${Math.ceil(remaining / 60000)} minute(s).<br>Challenges are rarer now so they feel special.`
+        : `<strong>Mini challenge ready</strong><br>${ch.prompt}<br>You will have ${timer || 12} seconds when you open it. Reward: ${fmt(ch.reward)}`;
+      ui.challengeCards.innerHTML = "";
+      ui.challengeCards.appendChild(card({
+        title: remaining > 0 ? "Challenge cooling down" : "Open timed challenge",
+        sub: remaining > 0 ? "Unavailable" : "Interactive",
+        badge: "Challenge",
+        desc: remaining > 0 ? "Come back later for a harder timed challenge." : "Open a timed decision page and answer before the timer runs out.",
+        meta: remaining > 0 ? [`Ready in about ${Math.ceil(remaining / 60000)} minute(s)`, "No farming", "Higher focus required"] : [`Reward: ${fmt(ch.reward)}`, "Timed answer", "Wrong answer gives nothing"],
+        button: remaining > 0 ? "Locked" : "Open challenge",
+        disabled: remaining > 0 || !canAct()
+      }, openChallengeAction, ch));
+      ui.activitySummary.innerHTML = `While waiting for hustles, cooldowns, or daily pay, you can do a few small side activities here for modest rewards.<br><strong>Next daily pay:</strong> ${currentJob().id === "none" ? "Get a job first." : timeUntilDailyPay()}`;
+      ui.activityCards.innerHTML = "";
+      sideActivities.forEach((activity) => {
+        const readyAt = state.activityCooldowns?.[activity.id] || 0;
+        const remainingSeconds = Math.max(0, Math.ceil((readyAt - Date.now()) / 1000));
+        ui.activityCards.appendChild(card({
+          title: activity.name,
+          sub: remainingSeconds > 0 ? `Ready in ${remainingSeconds}s` : "Quick filler activity",
+          badge: activity.badge,
+          desc: activity.desc,
+          meta: [`Reward: ${fmt(activity.reward)}`, `Cooldown: ${activity.cooldown}s`, "Good for downtime"],
+          button: remainingSeconds > 0 ? `Cooling down (${remainingSeconds}s)` : "Do activity",
+          disabled: remainingSeconds > 0 || !canAct()
+        }, openActivityAction, activity));
+      });
+    }
+
+    function renderJobsPage() {
+      const recent = state.recentApplications.filter((t) => Date.now() - t < 5 * 60 * 1000);
+      state.recentApplications = recent;
+      const spamPenalty = recent.length >= 3 ? 0.30 : 0;
+      const nextFireChance = state.job !== "none" ? Math.min(95, (recent.length + 1) * 5) : 0;
+      ui.jobsSummary.innerHTML = `<strong>Current job:</strong> ${currentJob().name}<br><strong>Daily pay:</strong> ${fmt(Math.max(20, Math.round(currentJob().power * 1.4)))} at 11:00 AM Brisbane time<br>Recent applications: ${recent.length}<br>${state.job !== "none" ? `If you apply for another job right now, there is a <strong>${nextFireChance}%</strong> chance your current employer fires you.` : "You are unemployed, so there is no firing risk right now."}<br>${spamPenalty > 0 ? "You have applied too often recently, so acceptance chances are 30% lower." : "Applying carefully keeps your odds higher."}<br>Higher paying jobs naturally have lower acceptance chances, while strong balance and status help.`;
+      ui.jobCards.innerHTML = "";
+      jobs.forEach((job) => {
+        const isCurrent = state.job === job.id;
+        const applicationCost = Math.max(100, job.power * 18);
+        const requiredTier = Math.max(0, job.tier - 2);
+        const totalFunds = state.money + state.bank;
+        const statusReady = currentJob().tier >= requiredTier;
+        const balanceBonus = totalFunds >= applicationCost * 0.75 ? 0.08 : 0;
+        const statusBonus = Math.max(0, currentJob().tier - Math.max(0, job.tier - 2)) * 0.01;
+        const starterBonus = job.tier <= 2 ? 0.12 : job.tier <= 4 ? 0.05 : 0;
+        const chance = isCurrent ? 1 : Math.max(0.04, Math.min(0.97, 0.74 - job.tier * 0.06 - spamPenalty + (statusReady ? balanceBonus : 0) + (statusReady ? statusBonus : 0) + starterBonus));
+        const jobCard = card({
+          title: job.name,
+          sub: isCurrent ? "Current job" : "Apply here",
+          badge: job.badge,
+          desc: job.desc,
+          meta: [`Daily pay: ${fmt(Math.max(20, Math.round(job.power * 1.4)))}`, `Acceptance chance: ${Math.round(chance * 100)}%`, `Application cost: ${fmt(applicationCost)}`, `Status needed: ${jobs.find(j => j.tier === requiredTier)?.name || "None"}`],
+          button: isCurrent ? "Current role" : "Open application",
+          disabled: isCurrent || !canAct()
+        }, () => openJobAction(job, chance), job);
+        if (isCurrent) {
+          jobCard.querySelector(".card-btn").classList.add("sec");
+        }
+        ui.jobCards.appendChild(jobCard);
+      });
+    }
+
+    function renderEarnings() {
+      ui.hustleCards.innerHTML = "";
+      const anyRunningHustle = state.activeJobs.some(a => hustles.some(h => h.id === a.id));
+      hustles.forEach(h => {
+        const running = state.activeJobs.find(a => a.id === h.id);
+        const rem = running ? Math.max(0, Math.ceil((running.endsAt - Date.now()) / 1000)) : 0;
+        ui.hustleCards.appendChild(card({
+          title: h.name, sub: running ? `Running, ${rem}s left` : anyRunningHustle ? "Another hustle is already running" : "Repeatable side hustle", badge: h.badge, desc: h.desc,
+          meta: [`Cost: ${fmt(h.cost)}`, `Payout: ${fmt(h.payout)} after ${h.duration}s`, `Profit: ${fmt(h.payout - h.cost)}`],
+          button: running ? `In progress (${rem}s)` : anyRunningHustle ? "Wait for current hustle" : "Open hustle", disabled: !canAct() || anyRunningHustle
+        }, openHustleAction, h));
+      });
+      ui.marketCards.innerHTML = "";
+      if (state.market && Date.now() < state.marketUntil) {
+        const rem = Math.max(0, Math.ceil((state.marketUntil - Date.now()) / 1000));
+        ui.marketCards.appendChild(card({
+          title: state.market.name, sub: "Limited-time opportunity", badge: "Limited", desc: state.market.desc,
+          meta: [`Window left: ${rem}s`, `Cost: ${fmt(state.market.cost)}`, `Payout: ${fmt(state.market.payout)} in ${state.market.duration}s`, `Cooldown after use: ${Math.ceil(state.market.cooldown / 60)} min`],
+          button: "Open job", disabled: !canAct()
+        }, openMarketAction, state.market));
+      } else {
+        ui.marketCards.innerHTML = `<div class="summary">${Date.now() < state.marketCooldownUntil ? `Emergency job board cooling down for ${Math.ceil((state.marketCooldownUntil - Date.now()) / 1000)} more seconds.` : "A new short-term job window is forming."}</div>`;
+      }
+      ui.casinoSummary.innerHTML = `Entertainment scales with your money. The cheaper game is for early players, while the expensive ones are later high-risk options.<br>Custom wager ready: ${fmt(gambleAmount())}. Use Max Cash to bet all cash on hand.`;
+      ui.casinoCards.innerHTML = "";
+      casinoGames.forEach(game => ui.casinoCards.appendChild(card({
+        title: game.name, sub: "Casino game", badge: game.badge, desc: game.desc,
+        meta: [game.id === "doubleup" ? `Chosen bet: ${fmt(gambleAmount())}` : `Entry cost: ${fmt(game.cost)}`, `Possible outcomes: ${game.outcomes.length}`, "Use carefully or blow up your bankroll"],
+        button: `Open game`, disabled: !canAct()
+      }, openCasinoAction, game)));
+    }
+
+    function renderAssets() {
+      ui.assetCards.innerHTML = "";
+      assets.forEach(a => ui.assetCards.appendChild(card({
+        title: a.name, sub: countAsset(a.id) ? `Owned: ${countAsset(a.id)}` : "Available to buy", badge: a.badge, desc: a.desc,
+        meta: [`Price: ${fmt(a.cost)}`, `Tier: ${a.badge}`, `Adds ${fmt(a.cost)} to net worth when owned`],
+        button: "Open purchase", disabled: !canAct()
+      }, openAssetAction, a)));
+      const owned = [...new Set(state.assets)]
+        .slice(0, 6)
+        .map(id => assetById(id) ? `${assetById(id).name} x${countAsset(id)}` : null)
+        .filter(Boolean)
+        .join(", ");
+      ui.assetSummary.innerHTML = `Total holdings: ${state.assets.length}<br>Asset value: ${fmt(state.assets.reduce((s,id)=>s + (assetById(id)?.cost || 0), 0))}<br>Passive income from assets: ${fmt(0)}/hour<br>${owned || "No holdings yet. Start with cheap low-quality gear."}<br>Assets now give progression and goals, while the bank handles passive interest.`;
+    }
+
+    function renderOwnedPage() {
+      const grouped = [...new Set(state.assets)]
+        .map(id => assetById(id) ? `${assetById(id).name} x${countAsset(id)}` : null)
+        .filter(Boolean);
+      const assetValue = state.assets.reduce((s,id)=>s + (assetById(id)?.cost || 0), 0);
+      ui.ownedSummary.innerHTML = `Net worth: ${fmt(netWorth())}<br>Cash: ${fmt(state.money)}<br>Bank: ${fmt(state.bank)}<br>Asset value: ${fmt(assetValue)}<br>Total items owned: ${state.assets.length}`;
+      ui.ownedList.innerHTML = grouped.length ? grouped.join("<br>") : "You do not own anything yet.";
+    }
+
+    function renderLosses() {
+      if (state.case) {
+        ui.crimeSummary.innerHTML = `<strong>Pending case:</strong> ${state.case.name}<br>Estimated conviction chance: ${Math.max(10, Math.round((state.case.catchChance + 0.12 - state.lawyer) * 100))}%<br>Lawyers are now tiered. Each more expensive lawyer tier only improves your odds by another 7.5%.`;
+      } else if (inJail()) {
+        ui.crimeSummary.innerHTML = `You are in jail for ${Math.ceil((state.jailUntil - Date.now()) / 1000)} more seconds.`;
+      } else {
+        ui.crimeSummary.innerHTML = "Losses are calmer now. Crime is optional, but it can still wreck progress.";
+      }
+      $("lawyerBtn").disabled = !state.case;
+      $("courtBtn").disabled = !state.case;
+      ui.crimeCards.innerHTML = "";
+      crimes.forEach(c => ui.crimeCards.appendChild(card({
+        title: c.name, sub: "Illegal action", badge: `${Math.round(c.catchChance * 100)}% caught`, desc: c.desc,
+        meta: [`Possible reward: ${fmt(c.reward)}`, "Court risk: high", "Jail possible if convicted"],
+        button: "Open plan", disabled: !canAct() || !!state.case
+      }, openCrimeAction, c)));
+    }
+
+    function renderUpdates() {
+      const today = brisbaneDayKey(), ready = state.lastWheel !== today;
+      const resetTimer = timeUntilBrisbaneMidnight();
+      ui.wheelSummary.innerHTML = state.wheelSpinning
+        ? `The daily wheel is spinning right now. Please wait for the result...<br><span class="muted">Next reset in: ${resetTimer} (Brisbane time)</span>`
+        : ready
+          ? `One spin each day. Better rewards are extremely rare.<br><span class="muted">Next reset in: ${resetTimer} (Brisbane time)</span>`
+          : `Today's wheel is already used. Come back tomorrow.<br><span class="muted">Resets in: ${resetTimer} (Brisbane time)</span>`;
+      $("wheelBtn").disabled = !ready || state.wheelSpinning;
+      ui.wheel.innerHTML = state.wheelSpinning ? `<div class="wheel-mid"><div class="wheel-loading"><div class="wheel-spinner"></div><div>Spinning</div></div></div>` : `<div class="wheel-mid">SPIN</div>`;
+      ui.wheelCards.innerHTML = "";
+      wheelRewards.forEach(r => ui.wheelCards.appendChild(card({
+        title: r.label, sub: "Possible wheel result", badge: `${r.weight} weight`, desc: r.type === "money" ? `Pays ${fmt(r.value)}` : `Reward type: ${r.type}`,
+        meta: [`Type: ${r.type}`, r.type === "money" ? `Value: ${fmt(r.value)}` : "Special effect reward", "Rarer rewards have lower weight"],
+        button: "Reward preview", disabled: true
+      }, () => {}, r)));
+    }
+
+    function renderHistory() {
+      const latest = state.history[state.history.length - 1] || netWorth();
+      const first = state.history[0] || latest;
+      const delta = latest - first;
+      ui.historySummary.innerHTML = `History points: ${state.history.length}<br>Change across chart: ${delta >= 0 ? "+" : ""}${fmt(delta)}<br>Wheel spins: ${state.stats.spins}<br>Gambles played: ${state.stats.gambles}<br>Crimes committed: ${state.stats.crimes}<br>Court record: ${state.stats.courtWins} wins / ${state.stats.courtLosses} losses`;
+      drawChart();
+    }
+
+    function renderBankPage() {
+      const activeLoan = state.loans[0];
+      const loanWarning = activeLoan
+        ? `<span style="color:#ff857f"><strong>Loan to repay:</strong> ${fmt(activeLoan.remaining)}<br><strong>Time left:</strong> ${fmtLoanTime(activeLoan.dueAt - Date.now())}</span>`
+        : "No active loan.";
+      ui.bankSummary.innerHTML = `Cash: ${fmt(state.money)}<br>Bank: ${fmt(state.bank)}<br>Interest: ${fmt(hourlyInterest())}/hour<br>Hourly interest unlock: ${state.manualIncomeUnlocked ? "active" : "earn money manually first"}<br>${loanWarning}`;
+      ui.achievementSummary.innerHTML = `Achievements claimed: ${state.achievementsClaimed.length}/${achievements.length}<br>${achievements.map(a => `${state.achievementsClaimed.includes(a.id) ? "Claimed" : "Locked"}: ${a.label} (${fmt(a.reward)})`).join("<br>")}`;
+      $("loanBtn").disabled = !!activeLoan;
+      $("repayBtn").disabled = !activeLoan;
+    }
+
+    function renderStats() {
+      ui.cash.textContent = fmt(state.money);
+      ui.bank.textContent = fmt(state.bank);
+      ui.worth.textContent = fmt(netWorth());
+      ui.interest.textContent = fmt(hourlyInterest());
+      ui.dockCash.textContent = fmt(state.money);
+      ui.dockBank.textContent = fmt(state.bank);
+      ui.status.textContent = inJail()
+        ? "In jail"
+        : hasAllAchievements() && ownsEveryAsset()
+          ? "Mythic"
+          : hasAllAchievements()
+            ? "Legendary"
+            : netWorth() >= 10_000_000
+              ? "Elite mogul"
+              : netWorth() >= 500_000
+                ? "Serious investor"
+                : netWorth() >= 50_000
+                  ? "Rising entrepreneur"
+                  : "Starting out";
+      ui.risk.textContent = state.case ? "Court case pending" : state.insurance ? "Insured" : "Stable";
+    }
+
+    function render() {
+      ui.versionLabel.textContent = `Version ${GAME_VERSION}`;
+      renderSoundButtons();
+      updatePauseOverlay();
+      safeRun(renderNav);
+      safeRun(renderStats);
+      safeRun(renderHome, () => { ui.homeSummary.innerHTML = "Home data could not load right now."; });
+      safeRun(renderEconomy, () => { ui.jobSummary.innerHTML = "Economy data could not load right now."; ui.challengeSummary.innerHTML = "Challenge data could not load right now."; });
+      safeRun(renderJobsPage, () => { ui.jobsSummary.innerHTML = "Jobs could not load right now."; ui.jobCards.innerHTML = `<div class="summary">Job options are temporarily unavailable.</div>`; });
+      safeRun(renderEarnings, () => { ui.hustleCards.innerHTML = `<div class="summary">Timed hustles could not load right now.</div>`; ui.marketCards.innerHTML = `<div class="summary">Limited-time jobs could not load right now.</div>`; ui.casinoSummary.innerHTML = "Gambling could not load right now."; ui.casinoCards.innerHTML = `<div class="summary">Gambling options are temporarily unavailable.</div>`; });
+      safeRun(renderAssets, () => { ui.assetCards.innerHTML = `<div class="summary">Assets could not load right now.</div>`; ui.assetSummary.innerHTML = "Holdings could not load right now."; });
+      safeRun(renderOwnedPage, () => { ui.ownedSummary.innerHTML = "Owned summary could not load right now."; ui.ownedList.innerHTML = "Owned items could not load right now."; });
+      safeRun(renderLosses, () => { ui.crimeSummary.innerHTML = "Crime and court data could not load right now."; ui.crimeCards.innerHTML = `<div class="summary">Loss options are temporarily unavailable.</div>`; });
+      safeRun(renderUpdates, () => { ui.wheelSummary.innerHTML = "Daily wheel data could not load right now."; ui.wheelCards.innerHTML = `<div class="summary">Wheel rewards could not load right now.</div>`; });
+      safeRun(renderHistory, () => { ui.historySummary.innerHTML = "History could not load right now."; });
+      safeRun(renderBankPage, () => { ui.bankSummary.innerHTML = "Bank data could not load right now."; ui.achievementSummary.innerHTML = "Achievements could not load right now."; });
+      safeRun(renderLog, () => { ui.historyLog.innerHTML = `<div class="entry">Recent history could not load right now.</div>`; });
+      setPage(state.page || "home");
+      if (!state.won && netWorth() >= TRILLION) {
+        state.won = true;
+        addLog("You did it", "You became the first trillionare in this simulation.", "positive");
+        celebrateTrillion();
+      }
+    }
+
+    function mainUiLooksBlank() {
+      return !ui.homeSummary.innerHTML.trim()
+        && !ui.jobsSummary.innerHTML.trim()
+        && !ui.assetSummary.innerHTML.trim()
+        && !ui.bankSummary.innerHTML.trim();
+    }
+
+    function resignJob() {
+      if (state.job === "none") return;
+      const oldJob = currentJob().name;
+      state.job = "none";
+      addLog("Job resigned", `You resigned from ${oldJob}.`, "negative");
+      finishAction("Job Resigned", `You left ${oldJob}. You can now apply for a different job.`, "jobs");
+    }
+
+    function openWorkAction() {
+      const cj = currentJob();
+      const next = cj.next ? jobs.find(j => j.id === cj.next) : null;
+      openAction("Current Job", `You are currently working as <strong>${cj.name}</strong>.<br>Daily pay arrives at 11:00 AM Brisbane time.<br>Daily pay amount: ${fmt(Math.max(20, Math.round(cj.power * 1.4)))}${next ? `<br>Next promotion target: ${next.name} for ${fmt(cj.promo)}.` : "<br>You are at the highest career tier."}`, [
+        { label: "Go To Jobs Page", primary: true, onClick: () => setPage("jobs") },
+        { label: "Resign", secondary: true, onClick: resignJob, disabled: state.job === "none" },
+        { label: "Back", onClick: () => setPage("home") }
+      ], "home");
+    }
+
+    function openBankAction(type) {
+      const amt = type === "deposit" ? Math.min(bankAmount(), state.money) : Math.min(bankAmount(), state.bank);
+      const maxAmt = type === "deposit" ? Math.max(0, Math.floor(state.money)) : Math.max(0, Math.floor(state.bank));
+      openAction(type === "deposit" ? "Bank Deposit" : "Bank Withdrawal", `${type === "deposit" ? "Move cash into the bank to earn passive interest." : "Move money back into spending cash."}<br><br><input id="actionAmountInput" class="field" type="number" min="1" step="1" value="${amt}" placeholder="Amount">`, [
+        { label: type === "deposit" ? "Deposit Typed Amount" : "Withdraw Typed Amount", primary: true, onClick: () => type === "deposit" ? deposit(actionAmount(amt)) : withdraw(actionAmount(amt)), disabled: amt <= 0 },
+        { label: type === "deposit" ? `Deposit Max ${fmt(maxAmt)}` : `Withdraw Max ${fmt(maxAmt)}`, secondary: true, onClick: () => type === "deposit" ? deposit(maxAmt) : withdraw(maxAmt), disabled: maxAmt <= 0 },
+        { label: "Back", secondary: true, onClick: () => setPage("home") }
+      ], "home");
+    }
+
+    function openJobAction(job, chance) {
+      const applicationCost = Math.max(100, job.power * 18);
+      const recent = state.recentApplications.filter((t) => Date.now() - t < 5 * 60 * 1000);
+      const fireChance = state.job !== "none" && state.job !== job.id ? Math.min(95, (recent.length + 1) * 5) : 0;
+      const requiredTier = Math.max(0, job.tier - 2);
+      const requiredStatusName = jobs.find(j => j.tier === requiredTier)?.name || "None";
+      const statusReady = currentJob().tier >= requiredTier;
+      const totalFunds = state.money + state.bank;
+      const hasBalanceSupport = totalFunds >= applicationCost * 0.75;
+      openAction("Job Application", `${job.name}<br>Acceptance chance: ${Math.round(chance * 100)}%<br>Application cost: ${fmt(applicationCost)}<br>Status needed: ${requiredStatusName}<br>${statusReady ? "Your status is high enough for this job." : "Your status is not high enough for this job yet."}<br>${hasBalanceSupport ? `Combined cash and bank money are high enough for the 75% balance boost.` : `You need ${fmt(applicationCost * 0.75)} in combined cash and bank money for the 75% balance boost.`}<br>${fireChance > 0 ? `Current job firing risk if you apply: ${fireChance}%<br>` : ""}Applying too many times within 5 minutes reduces your odds by 30%.`, [
+        { label: "Apply Now", primary: true, onClick: () => applyJob(job.id, chance, applicationCost), disabled: !canAct() },
+        { label: "Buy Promotion", secondary: true, onClick: () => promoteTo(job.id), disabled: currentJob().next !== job.id || state.money < currentJob().promo },
+        { label: "Back", onClick: () => setPage("jobs") }
+      ], "jobs");
+    }
+
+    function openHustleAction(h) {
+      openAction("Hustle Setup", `${h.name}<br>Cost: ${fmt(h.cost)}<br>Payout at the end: ${fmt(h.payout)} after ${h.duration} seconds.<br>You only receive the money when the timer finishes.`, [
+        { label: "Start Hustle", primary: true, onClick: () => startHustle(h), disabled: state.money < h.cost || !canAct() },
+        { label: "Back", onClick: () => setPage("earnings") }
+      ], "earnings");
+    }
+
+    function openMarketAction(job) {
+      openAction("Limited-Time Job", `${job.name}<br>Cost: ${fmt(job.cost)}<br>Payout at the end: ${fmt(job.payout)} after ${job.duration} seconds.<br>This window disappears soon.`, [
+        { label: "Take Limited Job", primary: true, onClick: () => startMarket(job), disabled: state.money < job.cost || !canAct() },
+        { label: "Back", onClick: () => setPage("earnings") }
+      ], "earnings");
+    }
+
+    function openAssetAction(a) {
+      const topAssetCost = Math.max(...assets.map(x => x.cost));
+      const canLoan = a.cost !== topAssetCost;
+      openAction("Asset Purchase", `${a.name}<br>Price: ${fmt(a.cost)}<br>Tier: ${a.badge}<br>This is a progression and net-worth purchase rather than passive income.`, [
+        { label: "Buy Asset", primary: true, onClick: () => buyAsset(a), disabled: state.money < a.cost || !canAct() },
+        { label: "Use Loan To Buy", secondary: true, onClick: () => useLoanForPurchase(a.cost, `asset:${a.id}`, a.name), disabled: state.money >= a.cost || !canLoan || !!state.loans.length },
+        { label: "Back", onClick: () => setPage("assets") }
+      ], "assets");
+    }
+
+    function openCasinoAction(game) {
+      if (game.id === "doubleup") {
+        const wager = Math.min(gambleAmount(), state.money);
+        openAction("Double Or Nothing", `Bet amount: ${fmt(wager)}<br>You either lose the entire bet or get double your money back.<br>This uses cash only, never bank money.`, [
+          { label: `Bet ${fmt(wager)}`, primary: true, onClick: () => playCasino(game), disabled: wager <= 0 || !canAct() },
+          { label: "Back", onClick: () => setPage("gambling") }
+        ], "gambling");
+        return;
+      }
+      const topCasinoCost = Math.max(...casinoGames.map(x => x.cost));
+      const canLoan = game.cost !== topCasinoCost;
+      openAction("Gambling Choice", `${game.name}<br>Entry cost: ${fmt(game.cost)}<br>${game.desc}<br>The higher-cost games have rarer and bigger prizes.`, [
+        { label: "Play Game", primary: true, onClick: () => playCasino(game), disabled: state.money < game.cost || !canAct() },
+        { label: "Use Loan To Play", secondary: true, onClick: () => useLoanForPurchase(game.cost, `gamble:${game.id}`, game.name), disabled: state.money >= game.cost || !canLoan || !!state.loans.length },
+        { label: "Back", onClick: () => setPage("gambling") }
+      ], "gambling");
+    }
+
+    function openCrimeAction(c) {
+      openAction("Crime Plan", `${c.name}<br>Possible reward: ${fmt(c.reward)}<br>Catch chance: ${Math.round(c.catchChance * 100)}%<br>If you get caught, you go to court.`, [
+        { label: "Commit Crime", primary: true, onClick: () => doCrime(c), disabled: !canAct() || !!state.case },
+        { label: "Back", onClick: () => setPage("losses") }
+      ], "losses");
+    }
+
+    function openChallengeAction() {
+      const ch = activeChallenge();
+      state.challengeTimerEnd = Date.now() + 12000;
+      openAction("Timed Challenge", `${ch.prompt}<br>You have 12 seconds. If the timer ends, you fail the challenge.`, ch.options.map((opt) => ({
+        label: opt,
+        primary: opt === ch.options[0],
+        onClick: () => answerChallenge(opt)
+      })).concat([{ label: "Back", secondary: true, onClick: () => setPage("economy") }]), "economy");
+    }
+
+    function openActivityAction(activity) {
+      const readyAt = state.activityCooldowns?.[activity.id] || 0;
+      const remainingSeconds = Math.max(0, Math.ceil((readyAt - Date.now()) / 1000));
+      openAction(activity.name, `${activity.desc}<br>Reward: ${fmt(activity.reward)}<br>${remainingSeconds > 0 ? `Ready again in ${remainingSeconds} second(s).` : "Ready right now."}`, [
+        { label: "Do Activity", primary: true, onClick: () => doActivity(activity), disabled: remainingSeconds > 0 || !canAct() },
+        { label: "Back", secondary: true, onClick: () => setPage("economy") }
+      ], "economy");
+    }
+
+    function deposit(amount = bankAmount()) {
+      const amt = Math.min(Math.max(1, Math.floor(amount || 0)), state.money);
+      if (amt <= 0) return finishAction("Deposit Failed", "You do not have enough cash on hand to deposit right now.", "home");
+      state.money -= amt;
+      state.bank += amt;
+      addLog("Bank deposit", `${fmt(amt)} moved into the bank for passive interest.`, "positive");
+      finishAction("Deposit Complete", `${fmt(amt)} moved into the bank.`, "home");
+    }
+
+    function withdraw(amount = bankAmount()) {
+      const amt = Math.min(Math.max(1, Math.floor(amount || 0)), state.bank);
+      if (amt <= 0) return finishAction("Withdrawal Failed", "You do not have enough money in the bank to withdraw right now.", "home");
+      state.bank -= amt;
+      state.money += amt;
+      addLog("Bank withdrawal", `${fmt(amt)} moved back into spending cash.`, "positive");
+      finishAction("Withdrawal Complete", `${fmt(amt)} moved back into spending cash.`, "home");
+    }
+
+    function doActivity(activity) {
+      if (!canAct()) return;
+      const readyAt = state.activityCooldowns?.[activity.id] || 0;
+      if (Date.now() < readyAt) return finishAction("Activity Cooling Down", `${activity.name} is still cooling down.`, "economy");
+      if (!state.activityCooldowns) state.activityCooldowns = {};
+      state.activityCooldowns[activity.id] = Date.now() + activity.cooldown * 1000;
+      earnedMoney(activity.reward, `Activity complete: ${activity.name}`, "positive");
+      finishAction("Activity Complete", `You finished ${activity.name} and earned ${fmt(activity.reward)}.`, "economy");
+    }
+
+    function fillGambleMax() {
+      ui.gambleAmountInput.value = String(Math.max(1, Math.floor(state.money)));
+      render();
+    }
+
+    function applyJob(jobId, chance, cost) {
+      if (!canAct()) return finishAction("Cannot Apply Right Now", "You cannot apply for a job at the moment.", "jobs");
+      const job = jobs.find(j => j.id === jobId);
+      if (!job) return finishAction("Job Missing", "That job could not be found.", "jobs");
+      if (state.job === job.id) return finishAction("Already Employed", `You already have the job ${job.name}.`, "jobs");
+      const requiredTier = Math.max(0, job.tier - 2);
+      const requiredStatusName = jobs.find(j => j.tier === requiredTier)?.name || "None";
+      if (currentJob().tier < requiredTier) {
+        return finishAction("Status Too Low", `Your status is not high enough for ${job.name}. You need to be at least ${requiredStatusName} level before applying successfully.`, "jobs");
+      }
+      if (state.money < cost) {
+        addLog("Not enough cash", `You need ${fmt(cost)} to apply.`, "negative");
+        return finishAction("Application Failed", `You need ${fmt(cost)} in cash to apply for ${job.name}, but you only have ${fmt(state.money)} in cash. Your combined cash and bank money are ${fmt(state.money + state.bank)}.`, "jobs");
+      }
+      state.money -= cost;
+      const applyingWhileEmployed = state.job !== "none";
+      const oldJobName = currentJob().name;
+      state.recentApplications.push(Date.now());
+      const fireChance = applyingWhileEmployed ? Math.min(0.95, state.recentApplications.length * 0.05) : 0;
+      let firedText = "";
+      if (applyingWhileEmployed && Math.random() < fireChance) {
+        state.job = "none";
+        addLog("You were fired", `Your employer found out you were applying elsewhere and fired you from ${oldJobName}.`, "negative");
+        popup("Fired from job", 0, true);
+        firedText = `<br>Your old job found out and fired you from ${oldJobName}.`;
+      }
+      if (Math.random() <= chance) {
+        state.job = job.id;
+        state.recentApplications = [];
+        addLog("New job secured", `You became a ${job.name}.`, "positive");
+        finishAction("Application Result", `You got accepted for ${job.name}.${firedText}`, "jobs");
+      } else {
+        addLog("Application rejected", "The interview did not land and the prep money is gone.", "negative");
+        finishAction("Application Result", `You were rejected for ${job.name}.${firedText}`, "jobs");
+      }
+    }
+
+    function promoteTo(jobId) {
+      if (!canAct()) return;
+      const cj = currentJob();
+      if (cj.next !== jobId) return;
+      if (state.money < cj.promo) return addLog("Promotion too expensive", `You need ${fmt(cj.promo)}.`, "negative");
+      state.money -= cj.promo;
+      state.job = cj.next;
+      addLog("Promotion purchased", `You climbed into ${currentJob().name}.`, "positive");
+      finishAction("Promotion Result", `You were promoted into ${currentJob().name}.`, "jobs");
+    }
+
+    function answerChallenge(option) {
+      const ch = activeChallenge();
+      const timedOut = state.challengeTimerEnd && Date.now() > state.challengeTimerEnd;
+      if (option === ch.answer) {
+        if (timedOut) {
+          addLog("Challenge failed", "Time ran out before you answered.", "negative");
+          finishAction("Challenge Result", "Too slow. The timer ran out, so there was no reward.", "economy");
+        } else {
+          earnedMoney(ch.reward, "Challenge solved", "positive");
+          finishAction("Challenge Result", `Correct. You earned ${fmt(ch.reward)}.`, "economy");
+        }
+      } else {
+        addLog("Challenge failed", "Wrong answer. No reward this time.", "negative");
+        finishAction("Challenge Result", "Wrong answer. No reward this time.", "economy");
+      }
+      const others = challenges.filter(c => c.id !== ch.id);
+      state.challenge = others[Math.floor(Math.random() * others.length)].id;
+      setNextChallengeTime();
+      state.challengeTimerEnd = 0;
+    }
+
+    function startHustle(h) {
+      if (!canAct()) return finishAction("Hustle Failed", "You cannot start a hustle right now.", "earnings");
+      if (state.activeJobs.some(a => hustles.some(x => x.id === a.id))) return finishAction("Hustle Locked", "Another timed hustle is already running. Wait for it to finish first.", "earnings");
+      if (state.money < h.cost) return finishAction("Hustle Failed", `You need ${fmt(h.cost)} in cash to start ${h.name}.`, "earnings");
+      state.money -= h.cost;
+      state.activeJobs.push({ id: h.id, name: h.name, endsAt: Date.now() + h.duration * 1000, payout: h.payout });
+      addLog("Hustle started", `${h.name} is underway for ${h.duration} seconds.`);
+      finishAction("Hustle Started", `${h.name} has started. You will only get paid when the timer ends.`, "earnings");
+    }
+
+    function startMarket(job) {
+      if (!canAct()) return finishAction("Limited Job Failed", "You cannot take a limited-time job right now.", "earnings");
+      if (Date.now() < state.marketCooldownUntil) return finishAction("Limited Job Cooling Down", `The board is cooling down for ${formatCountdown(state.marketCooldownUntil - Date.now())}.`, "earnings");
+      if (state.money < job.cost) return finishAction("Limited Job Failed", `You need ${fmt(job.cost)} in cash to take ${job.name}.`, "earnings");
+      state.money -= job.cost;
+      state.activeJobs.push({ id: `market-${job.id}-${Date.now()}`, name: job.name, endsAt: Date.now() + job.duration * 1000, payout: job.payout });
+      state.marketCooldownUntil = Date.now() + job.cooldown * 1000;
+      addLog("Limited job accepted", `${job.name} is running right now.`, "positive");
+      rollMarket();
+      finishAction("Limited Job Started", `${job.name} is underway. Payment comes at the end.`, "earnings");
+    }
+
+    function buyAsset(a) {
+      if (!canAct()) return finishAction("Purchase Failed", "You cannot buy this right now.", "assets");
+      if (state.money < a.cost) return finishAction("Purchase Failed", `You need ${fmt(a.cost)} in cash to buy ${a.name}.`, "assets");
+      state.money -= a.cost;
+      state.assets.push(a.id);
+      addLog("Asset purchased", `${a.name} joined your holdings.`, "positive");
+      finishAction("Purchase Complete", `You bought ${a.name} for ${fmt(a.cost)}.`, "assets");
+    }
+
+    function openAdminAction() {
+      if (!state.adminUnlocked) {
+        openAction("Admin Access", `Enter the admin code to unlock the admin panel.`, [
+          { label: "Unlock Admin", primary: true, onClick: () => {
+            const code = prompt("Enter admin code");
+            if (code === "admin2216") {
+              state.adminUnlocked = true;
+              finishAction("Admin Unlocked", "Admin mode is now unlocked.", "home");
+            } else {
+              finishAction("Admin Failed", "That code was incorrect.", "home");
+            }
+          }},
+          { label: "Back", onClick: () => setPage("home") }
+        ], "home");
+      } else {
+        openAction("Admin Panel", `Admin access lets you add money directly to your cash balance.<br><br><input id="actionAmountInput" class="field" type="number" min="1" step="1" value="1000" placeholder="Admin amount">`, [
+          { label: "Add Typed Amount", primary: true, onClick: () => { const amt = actionAmount(1000); state.money += amt; finishAction("Admin Grant", `Added ${fmt(amt)} to cash.`, "home"); } },
+          { label: "Add $10,000", secondary: true, onClick: () => { state.money += 10000; finishAction("Admin Grant", "Added $10,000 to cash.", "home"); } },
+          { label: "Turn Off Admin", secondary: true, onClick: () => { state.adminUnlocked = false; finishAction("Admin Disabled", "Admin mode was turned off.", "home"); } },
+          { label: "Back", onClick: () => setPage("home") }
+        ], "home");
+      }
+    }
+
+    function takeLoan() {
+      const amount = Math.min(1_000_000, Math.max(100, Math.floor(Number(ui.loanAmountInput.value) || 0)));
+      if (state.loans.length) return finishAction("Loan Blocked", "You already have an active loan to repay first.", "bank");
+      state.loans.push({ remaining: amount, dueAt: Date.now() + 7 * 24 * 60 * 60 * 1000 });
+      state.money += amount;
+      finishAction("Loan Approved", `You took a loan for ${fmt(amount)}. It must be repaid within one week.`, "bank");
+    }
+
+    function useLoanForPurchase(amount, tag, label) {
+      if (state.loans.length) return finishAction("Loan Blocked", "You already have an active loan, so you cannot borrow again yet.", state.page);
+      state.loans.push({ remaining: amount, dueAt: Date.now() + 7 * 24 * 60 * 60 * 1000 });
+      state.money += amount;
+      state.ownedViaLoan = { tag, label };
+      finishAction("Loan Approved", `A loan for ${fmt(amount)} was added so you can afford ${label}. Complete the purchase now and repay within one week.`, state.page);
+    }
+
+    function repayLoan() {
+      const loan = state.loans[0];
+      if (!loan) return finishAction("No Loan Found", "There is no active loan to repay right now.", "bank");
+      const amount = Math.min(state.money, loan.remaining);
+      loan.remaining -= amount;
+      state.money -= amount;
+      if (loan.remaining <= 0) {
+        state.loans = [];
+        finishAction("Loan Repaid", "Your loan is fully repaid.", "bank");
+      } else {
+        finishAction("Loan Partially Repaid", `You repaid ${fmt(amount)}. Remaining: ${fmt(loan.remaining)}.`, "bank");
+      }
+    }
+
+    function donateToPoor(amount) {
+      const donation = Math.min(Math.max(1, Math.floor(amount || 0)), state.bank);
+      if (donation <= 0) return finishAction("Donation Failed", "You do not have enough money in the bank to donate that amount.", "bank");
+      state.bank -= donation;
+      addLog("Donation made", `You donated ${fmt(donation)} from your bank balance.`, "positive");
+      finishAction("Donation Complete", `You donated ${fmt(donation)} to the poor. That money is gone from your bank balance.`, "bank");
+    }
+
+    function donateAllCash() {
+      const donation = Math.max(0, Math.floor(state.money));
+      if (donation <= 0) return finishAction("Donation Failed", "You do not have any cash to donate right now.", "bank");
+      state.money -= donation;
+      addLog("Donation made", `You donated ${fmt(donation)} from your cash balance.`, "positive");
+      finishAction("Donation Complete", `You donated all of your cash, ${fmt(donation)}, to the poor.`, "bank");
+    }
+
+    function openDonateAction() {
+      const amount = Math.min(100, state.bank);
+      const maxAmt = Math.max(0, Math.floor(state.bank));
+      openAction("Donate To The Poor", `Choose how much you want to donate from your bank balance.<br><br><input id="actionAmountInput" class="field" type="number" min="1" step="1" value="${Math.max(1, amount)}" placeholder="Donation amount">`, [
+        { label: "Donate Typed Amount", primary: true, onClick: () => donateToPoor(actionAmount(Math.max(1, amount))), disabled: maxAmt <= 0 },
+        { label: `Donate Max ${fmt(maxAmt)}`, secondary: true, onClick: () => donateToPoor(maxAmt), disabled: maxAmt <= 0 },
+        { label: `Donate All Cash ${fmt(Math.max(0, Math.floor(state.money)))}`, secondary: true, onClick: donateAllCash, disabled: state.money <= 0 },
+        { label: "Back", secondary: true, onClick: () => setPage("bank") }
+      ], "bank");
+    }
+
+    function animateWheel() {
+      const extra = 1400 + Math.random() * 1200;
+      const current = Number(ui.wheel.dataset.rotation || 0);
+      const next = current + extra;
+      ui.wheel.dataset.rotation = String(next);
+      ui.wheel.style.transform = `rotate(${next}deg)`;
+    }
+
+    function spinWheel() {
+      const today = brisbaneDayKey();
+      if (state.lastWheel === today || state.wheelSpinning) return;
+      state.lastWheel = today;
+      state.wheelSpinning = true;
+      state.stats.spins += 1;
+      ui.wheelSummary.innerHTML = "Spinning the daily wheel...";
+      animateWheel();
+      const reward = chooseWeighted(wheelRewards);
+      setTimeout(() => {
+        state.wheelSpinning = false;
+        let resultText = reward.label;
+        if (reward.type === "money") earnedMoney(reward.value, `Wheel reward: ${reward.label}`, "positive");
+        if (reward.type === "boost") {
+          state.boostUntil = Date.now() + reward.value;
+          addLog("Wheel reward", "Your bank interest got a temporary surge.", "positive");
+          resultText = `${reward.label}: interest boost`;
+        }
+        if (reward.type === "instant") {
+          const active = state.activeJobs[0];
+          if (active) {
+            active.endsAt = Date.now() + 1000;
+            addLog("Wheel reward", "One active hustle is about to cash out instantly.", "positive");
+            resultText = `${reward.label}: one hustle finishes almost instantly`;
+          } else {
+            earnedMoney(300, "Wheel fallback reward", "positive");
+            resultText = `${reward.label}: fallback cash`;
+          }
+        }
+        if (reward.type === "shield") {
+          state.shields += reward.value;
+          addLog("Wheel reward", "You earned a lucky shield.", "positive");
+          resultText = `${reward.label}: 1 lucky shield`;
+        }
+        if (reward.type === "asset") {
+          state.assets.push(reward.value);
+          addLog("Wheel jackpot", "You won a free toolkit.", "positive");
+          resultText = `${reward.label}: free ${reward.value}`;
+        }
+        ui.wheelSummary.innerHTML = `You won: ${resultText}`;
+        finishAction("Wheel Result", `The wheel landed on <strong>${reward.label}</strong>.<br>You won: ${resultText}.`, "updates");
+      }, 2200);
+      render();
+    }
+
+    function playCasino(game) {
+      if (!canAct()) return;
+      if (game.id === "doubleup") {
+        const wager = Math.min(gambleAmount(), state.money);
+        if (wager <= 0) return finishAction("Bet Failed", "Choose a valid cash bet first.", "gambling");
+        state.money -= wager;
+        state.stats.gambles += 1;
+        const out = chooseWeighted(game.outcomes);
+        const payout = out.multiplier === 2 ? wager * 2 : 0;
+        state.money += payout;
+        if (payout > wager) state.manualIncomeUnlocked = true;
+        const net = payout - wager;
+        addLog(game.name, `${out.label}. Net result: ${net >= 0 ? "+" : ""}${fmt(net)}.`, net >= 0 ? "positive" : "negative");
+        return finishAction("Gambling Result", `${game.name}: ${out.label}. ${out.multiplier === 2 ? `You turned ${fmt(wager)} into ${fmt(payout)}.` : `You lost ${fmt(wager)}.`}`, "gambling");
+      }
+      if (state.money < game.cost) return;
+      state.money -= game.cost;
+      state.stats.gambles += 1;
+      const out = chooseWeighted(game.outcomes);
+      state.money = Math.max(0, state.money + game.cost + out.delta);
+      if (out.delta > 0) state.manualIncomeUnlocked = true;
+      addLog(game.name, `${out.label}. Net result: ${fmt(out.delta)} after paying the entry cost.`, out.delta >= 0 ? "positive" : "negative");
+      finishAction("Gambling Result", `${game.name}: ${out.label}. Net result ${out.delta >= 0 ? "+" : ""}${fmt(out.delta)}.`, "gambling");
+    }
+
+    function buyInsurance() {
+      if (state.insurance || !canAct() || state.money < 18000) return;
+      state.money -= 18000;
+      state.insurance = true;
+      addLog("Protection bought", "Insurance will soften future bad events.", "positive");
+      finishAction("Insurance Purchased", "Insurance is now active and will reduce bad event losses.", "home");
+    }
+
+    function doCrime(c) {
+      if (!canAct() || state.case) return;
+      state.stats.crimes += 1;
+      if (Math.random() < c.catchChance) {
+        state.case = { ...c };
+        state.lawyer = 0;
+        addLog("Crime failed", `You got caught during "${c.name}". Court is now your problem.`, "negative");
+        finishAction("Crime Result", `You got caught during ${c.name}. A court case is now pending.`, "losses");
+      } else {
+        earnedMoney(c.reward, `Crime success: ${c.name}`, "positive");
+        finishAction("Crime Result", `You got away with ${c.name} and earned ${fmt(c.reward)}.`, "losses");
+      }
+    }
+
+    function hireLawyer(tier) {
+      if (!state.case || !tier) return;
+      if (state.money < tier.cost) return finishAction("Lawyer Too Expensive", `You need ${fmt(tier.cost)} to hire ${tier.name}.`, "losses");
+      state.money -= tier.cost;
+      state.lawyer = Math.max(state.lawyer, tier.reduction);
+      addLog("Lawyer hired", `${tier.name} joined your defense team.`, "positive");
+      finishAction("Lawyer Hired", `${tier.name} was hired for ${fmt(tier.cost)}. Your conviction chance was reduced by ${Math.round(tier.reduction * 100)}%.`, "losses");
+    }
+
+    function openLawyerAction() {
+      if (!state.case) return;
+      openAction("Hire Lawyer", "Choose a defense team. More expensive lawyers help more, but only by another 7.5% per tier.", lawyerTiers.map((tier, index) => ({
+        label: `${tier.name} - ${fmt(tier.cost)}`,
+        primary: index === 0,
+        secondary: index > 0,
+        onClick: () => hireLawyer(tier),
+        disabled: state.money < tier.cost || state.lawyer >= tier.reduction
+      })).concat([{ label: "Back", onClick: () => setPage("losses") }]), "losses");
+    }
+
+    function goCourt() {
+      if (!state.case) return;
+      const chance = Math.max(.10, Math.min(.97, state.case.catchChance + .12 - state.lawyer));
+      if (Math.random() < chance) {
+        const fine = Math.max(3000, Math.round(state.case.reward * .35));
+        state.money = Math.max(0, state.money - fine);
+        state.jailUntil = Date.now() + (state.case.reward > 100000 ? 40000 : 18000);
+        state.stats.courtLosses += 1;
+        addLog("Court loss", `You were convicted. Fine: ${fmt(fine)} and temporary jail time.`, "negative");
+        popup("Court loss", -fine, true);
+        finishAction("Court Result", `You lost in court. Fine: ${fmt(fine)}.`, "losses");
+      } else {
+        state.stats.courtWins += 1;
+        addLog("Court win", "Your lawyer and luck saved you. You walked free.", "positive");
+        finishAction("Court Result", "You won in court and walked free.", "losses");
+      }
+      state.case = null;
+      state.lawyer = 0;
+    }
+
+    function processJobs() {
+      const now = Date.now();
+      const done = state.activeJobs.filter(j => now >= j.endsAt);
+      if (!done.length) return;
+      done.forEach(j => earnedMoney(j.payout, `Hustle completed: ${j.name}`, "positive"));
+      state.activeJobs = state.activeJobs.filter(j => now < j.endsAt);
+    }
+
+    function maybeEvent() {
+      if (isTacoTuesday() && Math.random() < 0.08) {
+        const tacoRewards = [
+          { title: "Taco Tuesday cash burst", amount: 650, type: "money" },
+          { title: "Taco Tuesday interest boost", amount: 900000, type: "boost" },
+          { title: "Lucky Taco Block", amount: 1, type: "shield" }
+        ];
+        const reward = tacoRewards[Math.floor(Math.random() * tacoRewards.length)];
+        if (reward.type === "money") money(reward.amount, reward.title, "positive");
+        if (reward.type === "boost") { state.boostUntil = Date.now() + 180000; addLog(reward.title, "Your bank interest is boosted for a while.", "positive"); popup(reward.title, 0, false); }
+        if (reward.type === "shield") { state.shields += 1; addLog(reward.title, "You got a lucky taco block shield.", "positive"); popup(reward.title, 0, false); }
+        return;
+      }
+      if (Math.random() > .012) return;
+      const e = { ...events[Math.floor(Math.random() * events.length)] };
+      if (e.title === "House fire damage") {
+        const home = mostExpensiveOwnedHome();
+        if (!home) return;
+        e.amount = -Math.max(18000, Math.round(home.cost * 0.018));
+        e.text = `A serious fire caused damage to your ${home.name.toLowerCase()}, and the repairs scaled with its value.`;
+      }
+      if (e.type === "bad" && Math.random() > .22) return;
+      if (e.type === "bad" && state.shields > 0) {
+        state.shields -= 1;
+        return addLog("Lucky shield", `${e.title} was blocked by your protection.`, "positive");
+      }
+      let amount = e.amount;
+      if (e.type === "bad" && state.insurance) amount = Math.round(amount * .5);
+      if (e.type === "bad" && countAsset("apartment") > 0) amount = Math.round(amount * .85);
+      if (amount < 0) {
+        state.money = Math.max(0, state.money + amount);
+        addLog(e.title, `${fmt(amount)}.`, "negative");
+        popup(e.title, amount, true);
+      } else {
+        money(amount, e.title, "positive");
+      }
+      addLog("Event detail", e.text, e.type === "good" ? "positive" : "negative");
+    }
+
+    function rollMarket() {
+      if (Date.now() < state.marketCooldownUntil) return;
+      state.market = marketJobs[Math.floor(Math.random() * marketJobs.length)];
+      state.marketUntil = Date.now() + state.market.window * 1000;
+    }
+
+    function processDailyPay() {
+      if (!state.manualIncomeUnlocked) return;
+      if (currentJob().id === "none") return;
+      const now = brisbaneNow();
+      const key = brisbaneDayKey();
+      if (now.getHours() >= 11 && state.lastDailyPayDate !== key) {
+        const pay = Math.max(20, Math.round(currentJob().power * 1.4));
+        state.money += pay;
+        state.lastDailyPayDate = key;
+        addLog("Daily job pay", `Your job paid ${fmt(pay)} at 11:00 AM Brisbane time.`, "positive");
+        popup("Daily job pay", pay, false);
+      }
+    }
+
+    function processInterest() {
+      if (!state.manualIncomeUnlocked) return;
+      const now = Date.now();
+      const elapsed = now - state.lastInterestAt;
+      if (elapsed < 60 * 60 * 1000) return;
+      const hours = Math.floor(elapsed / (60 * 60 * 1000));
+      const amount = Math.round(hourlyInterest() * hours);
+      state.lastInterestAt += hours * 60 * 60 * 1000;
+      if (amount > 0) {
+        state.money += amount;
+        addLog("Bank interest", `Your bank paid ${fmt(amount)} for ${hours} hour(s) of interest.`, "positive");
+        popup("Bank interest", amount, false);
+      }
+    }
+
+    function processLoans() {
+      const loan = state.loans[0];
+      if (!loan) return;
+      if (Date.now() > loan.dueAt) {
+        state.loans = [];
+        if (state.ownedViaLoan?.tag?.startsWith("asset:")) {
+          const id = state.ownedViaLoan.tag.split(":")[1];
+          const idx = state.assets.lastIndexOf(id);
+          if (idx >= 0) state.assets.splice(idx, 1);
+        } else if (state.assets.length) {
+          state.assets.pop();
+        }
+        state.ownedViaLoan = null;
+        state.money = Math.floor(state.money * 0.5);
+        addLog("Loan default", "You missed the deadline. One owned item was repossessed and you lost 50% of your cash.", "negative");
+        popup("Loan default", -Math.floor(state.money * 0.5), true);
+      }
+    }
+
+    function tick() {
+      checkIdlePause();
+      if (state.idlePaused) {
+        updatePauseOverlay();
+        return;
+      }
+      processInterest();
+      processJobs();
+      processDailyPay();
+      processLoans();
+      checkAchievements();
+      if (!state.market || Date.now() > state.marketUntil) rollMarket();
+      state.history.push(netWorth());
+      state.history = state.history.slice(-60);
+      render();
+      save();
+    }
+
+    function openInsuranceAction() {
+      openAction("Insurance Purchase", `Insurance costs ${fmt(18000)} and reduces future bad-event losses.`, [
+        { label: "Buy Insurance", primary: true, onClick: buyInsurance, disabled: state.insurance || state.money < 18000 || !canAct() },
+        { label: "Back", onClick: () => setPage("home") }
+      ], "home");
+    }
+
+    function openWheelAction() {
+      openAction("Daily Wheel", "Spin the daily wheel for one reward. Better rewards are much rarer.", [
+        { label: "Spin Wheel", primary: true, onClick: spinWheel, disabled: $("wheelBtn").disabled },
+        { label: "Back", onClick: () => setPage("updates") }
+      ], "updates");
+    }
+
+    function completeRestart() {
+      localStorage.removeItem(SAVE_KEY);
+      resetStateData();
+      sanitizeState();
+      state.titleVisible = true;
+      state.page = "home";
+      rollMarket();
+      if (!state.history.length) state.history.push(netWorth());
+      if (!state.nextChallengeAt) setNextChallengeTime();
+      render();
+      setTitleVisible(true);
+      addLog("Fresh start", "A brand new run has begun.", "negative");
+      save();
+    }
+
+    function tickRestartLoading() {
+      if (!state.restartPending) return;
+      const remaining = Math.max(0, state.restartEndsAt - Date.now());
+      if (remaining <= 0) {
+        state.restartPending = false;
+        state.restartEndsAt = 0;
+        completeRestart();
+        return;
+      }
+      openAction("Restarting Game", `Resetting your run.<br>You will lose all money and data.<br>Time remaining: <strong>${Math.ceil(remaining / 1000)} second(s)</strong>`, [
+        { label: "Cancel", secondary: true, onClick: () => {
+          state.restartPending = false;
+          state.restartEndsAt = 0;
+          finishAction("Restart Cancelled", "Your current run is safe.", "bank");
+        }}
+      ], "bank");
+    }
+
+    function beginRestartLoading() {
+      state.restartPending = true;
+      state.restartEndsAt = Date.now() + 20000;
+      tickRestartLoading();
+    }
+
+    function confirmRestartDanger() {
+      openAction("Final Warning", "You will lose all money and data if you continue.<br>Are you absolutely sure?", [
+        { label: "Yes", primary: true, onClick: beginRestartLoading },
+        { label: "Cancel", secondary: true, onClick: () => setPage("bank") }
+      ], "bank");
+    }
+
+    function openRestartFlow() {
+      openAction("Restart Game", "Are you sure you want to restart the game?", [
+        { label: "Yes", primary: true, onClick: confirmRestartDanger },
+        { label: "Cancel", secondary: true, onClick: () => setPage("bank") }
+      ], "bank");
+    }
+
+    function startGame() {
+      setTitleVisible(false);
+      openAction("Patch Notes", `<strong>Updated ${GAME_VERSION}</strong> <span style="color:#7ef0c1">●</span><br><br>${GAME_PATCH_NOTES.map(note => `<span style="color:#7ef0c1">▲</span> ${note}`).join("<br>")}`, [
+        { label: "Continue", primary: true, onClick: () => { setPage("home"); render(); } },
+        { label: "Cancel", secondary: true, onClick: () => { setPage("home"); setTitleVisible(true); render(); } }
+      ], "home");
+    }
+
+    function startGame() {
+      setTitleVisible(false);
+      const patchHtml = PATCH_HISTORY.map(entry => {
+        const icon = entry.recent ? `<span style="color:#ff857f">■</span>` : `<span style="color:#7ef0c1">▲</span>`;
+        const lines = entry.notes.map(note => `${icon} ${note}`).join("<br>");
+        return `<strong>${entry.version}</strong><br>${lines}`;
+      }).join("<br><br>");
+      openAction("Patch Notes", `<strong>Updated ${GAME_VERSION}</strong><br><br>${patchHtml}`, [
+        { label: "Continue", primary: true, onClick: () => { setPage("home"); render(); } },
+        { label: "Cancel", secondary: true, onClick: () => { setPage("home"); setTitleVisible(true); render(); } }
+      ], "home");
+    }
+
+    $("workBtn").addEventListener("click", openWorkAction);
+    $("depositBtn").addEventListener("click", () => openBankAction("deposit"));
+    $("withdrawBtn").addEventListener("click", () => openBankAction("withdraw"));
+    $("insuranceBtn").addEventListener("click", openInsuranceAction);
+    $("wheelBtn").addEventListener("click", openWheelAction);
+    $("lawyerBtn").addEventListener("click", openLawyerAction);
+    $("courtBtn").addEventListener("click", goCourt);
+    $("adminBtn").addEventListener("click", openAdminAction);
+    $("loanBtn").addEventListener("click", takeLoan);
+    $("repayBtn").addEventListener("click", repayLoan);
+    $("donateBtn").addEventListener("click", openDonateAction);
+    ui.restartBtn.addEventListener("click", openRestartFlow);
+    ui.gambleMaxBtn.addEventListener("click", fillGambleMax);
+    ui.pauseCancelBtn.addEventListener("click", resumeIdlePause);
+    ui.startBtn.addEventListener("click", startGame);
+    ui.soundBtn.addEventListener("click", toggleSound);
+    ui.titleSoundBtn.addEventListener("click", toggleSound);
+    ui.balanceDock.addEventListener("click", () => setPage("bank"));
+    ui.actionBackBtn.addEventListener("click", () => setPage(state.actionReturnPage || "home"));
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button || button.disabled) return;
+      if (button === ui.soundBtn || button === ui.titleSoundBtn) return;
+      playSound("soft");
+    });
+    ["mousedown","keydown","touchstart","scroll","mousemove"].forEach(eventName => window.addEventListener(eventName, markInteraction, { passive: true }));
+    window.addEventListener("focus", markInteraction);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) markInteraction(); });
+
+    load();
+    sanitizeState();
+    state.titleVisible = true;
+    if (!state.log.length) addLog("Welcome", "Use the page buttons to move between systems and build your wealth slowly from zero.", "positive");
+    if (!state.market || Date.now() > state.marketUntil) rollMarket();
+    if (!state.history.length) state.history.push(netWorth());
+    if (!state.nextChallengeAt) setNextChallengeTime();
+    render();
+    if (mainUiLooksBlank()) {
+      localStorage.removeItem(SAVE_KEY);
+      resetStateData();
+      sanitizeState();
+      addLog("Recovery mode", "The game rebuilt a clean save because the previous one looked corrupted.", "negative");
+      rollMarket();
+      state.history.push(netWorth());
+      render();
+    }
+    setTitleVisible(true);
+    setInterval(() => {
+      tick();
+      tickRestartLoading();
+    }, 1000);
+    setInterval(() => {
+      checkIdlePause();
+      if (!state.idlePaused && state.manualIncomeUnlocked) maybeEvent();
+      render();
+    }, 12000);
+  </script>
+</body>
+</html>
